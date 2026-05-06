@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap');
+
+@theme {
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #74593e;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d7b594;
+  --color-on-primary-container: #5e462c;
+  
+  --color-secondary: #4f644c;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #cee6c9;
+  
+  --color-surface: #fff8f4;
+  --color-surface-container: #f4ece8;
+  --color-surface-container-low: #faf2ee;
+  --color-surface-container-high: #eee7e2;
+  --color-on-surface: #1e1b19;
+  --color-on-surface-variant: #4e453d;
+  
+  --color-outline: #80756b;
+  --color-outline-variant: #d2c4b9;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+.markdown-body {
+  @apply text-on-surface-variant leading-relaxed;
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 30px rgba(74, 70, 67, 0.05);
+}
