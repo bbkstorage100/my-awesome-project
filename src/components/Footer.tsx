@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
+import { Box } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="w-full bg-surface-container border-t border-outline-variant/30 mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="col-span-1 lg:col-span-2">
-          <Link to="/" className="flex items-center mb-6">
-            <img 
-              src="input_file_0.png" 
-              alt="擺寶庫 Logo" 
-              className="h-14 w-auto"
-            />
+          <Link to="/" className="flex items-center gap-3 mb-6">
+            <div className="bg-primary p-2 rounded-xl">
+              <Box className="text-on-primary" size={24} />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-headline text-lg font-bold text-primary leading-none">擺寶庫</span>
+              <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">Kanketsu Storage</span>
+            </div>
           </Link>
           <p className="text-on-surface-variant max-w-sm text-base leading-relaxed">
             Bringing peace of mind to your space. <br />
