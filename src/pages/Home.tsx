@@ -49,21 +49,24 @@ export default function Home() {
       title: "極簡上層空間", 
       price: "980", 
       suitable: "適合：珍貴收藏、文件帳冊、小型生活雜物",
-      featured: false
+      featured: false,
+      btnColor: "bg-primary text-on-primary"
     },
     { 
       type: "中型櫃 / 下層", 
       title: "黃金便利空間", 
       price: "1,680", 
       suitable: "適合：露營裝備、換季衣物、中型收納箱",
-      featured: true
+      featured: true,
+      btnColor: "bg-secondary text-on-secondary"
     },
     { 
       type: "大型櫃 / 獨立式", 
       title: "商務超值空間", 
       price: "2,800", 
       suitable: "適合：電商存貨、大型家具、公司資產",
-      featured: false
+      featured: false,
+      btnColor: "bg-primary-container text-on-primary-container"
     }
   ];
 
@@ -145,15 +148,21 @@ export default function Home() {
               </motion.div>
             ))}
             
-            <div className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between">
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between soft-shadow"
+            >
               <div>
                 <ShoppingBag className="text-primary w-8 h-8 mb-4" />
                 <h3 className="text-xl font-bold mb-2">公司帳冊</h3>
                 <p className="text-sm text-on-surface-variant">符合法規的長期存放空間。</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="md:col-span-2 bg-surface-container-high p-8 rounded-[2.5rem] flex items-center gap-6">
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="md:col-span-2 bg-surface-container-high p-8 rounded-[2.5rem] flex items-center gap-6 soft-shadow"
+            >
               <div className="flex-1">
                 <Box className="text-primary w-10 h-10 mb-4" />
                 <h3 className="text-2xl font-bold mb-2">電商倉儲</h3>
@@ -162,15 +171,18 @@ export default function Home() {
               <div className="hidden sm:block w-1/3">
                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8j3NEOnWtvYZtR2Kk3JZ1NcGMbC_rYQHNjV2hInl7oLN5kccKLqiGneCi42AW_D1eQwbQnhQwPqIj4Y4LIggrmZ5mv00P6WsGjQpe2MMbPcbBEeHjM1_tpcYikw4E69yxSasQ7Bd6hdqdHoIDvVFfBiLbfDlaO4AD0M47Gv9tnoZiZFs2rpCZxgWnNeBHD2KW2JT1o5UMixadGO2lqDEpyulTX8d9xcGCXvIYuJWnpQpO5bO7GP5NT9c_Jm372ChyAu_LkArUOida" className="rounded-2xl aspect-square object-cover" alt="Storage Hallway" />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between">
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between soft-shadow"
+            >
               <div>
                 <House size={32} className="text-primary mb-4" />
                 <h3 className="text-xl font-bold mb-2">辦公家具</h3>
                 <p className="text-sm text-on-surface-variant">搬遷或裝潢時的緩衝站。</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -260,8 +272,8 @@ export default function Home() {
             {pricing.map((p, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ y: -5 }}
-                className={`bg-white p-10 rounded-[2.5rem] flex flex-col items-center text-center border transition-all ${p.featured ? 'border-primary border-2 scale-105 shadow-xl relative z-10' : 'border-outline-variant/30 hover:border-primary'}`}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className={`bg-white p-10 rounded-[2.5rem] flex flex-col items-center h-full text-center border transition-all ${p.featured ? 'border-primary border-2 shadow-xl relative z-10' : 'border-outline-variant/30 hover:border-primary'}`}
               >
                 {p.featured && <span className="absolute -top-4 bg-primary text-on-primary px-6 py-1 rounded-full text-xs font-bold uppercase tracking-widest">熱門推薦</span>}
                 <div className="w-full aspect-video bg-surface-container-low rounded-2xl mb-8 flex items-center justify-center">
@@ -272,7 +284,7 @@ export default function Home() {
                 <p className="text-on-surface-variant text-sm mb-10">{p.suitable}</p>
                 <div className="mt-auto pt-8 border-t border-outline-variant/10 w-full">
                   <p className="text-2xl font-bold text-primary mb-6">NT$ {p.price} / 月起</p>
-                  <Link to="/contact" className={`block w-full py-4 rounded-xl font-bold transition-all ${p.featured ? 'bg-primary text-on-primary shadow-lg' : 'border border-primary text-primary hover:bg-primary hover:text-on-primary'}`}>
+                  <Link to="/contact" className={`block w-full py-4 rounded-xl font-bold transition-all shadow-lg hover:brightness-95 ${p.btnColor}`}>
                     立即預約
                   </Link>
                 </div>
