@@ -80,7 +80,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl lg:text-7xl font-bold text-on-surface mb-8 leading-[1.1]">
+            <h1 className="text-[38px] font-bold text-on-surface mb-8 leading-[1.1]">
               給生活一點留白，<br />找回空間的純粹。
             </h1>
             <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
