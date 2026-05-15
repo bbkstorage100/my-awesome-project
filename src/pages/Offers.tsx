@@ -85,7 +85,7 @@ export default function Offers() {
             transition={{ delay: 0.2 }}
             className="text-lg text-on-surface-variant leading-relaxed"
           >
-            我們相信收納不只是整理，更是重新找回生活節奏的藝術。透過本季限定優惠，讓 Kanketsu 協助您打造理想的簡約家居。
+            我們相信收納不只是整理，更是重新找回生活節奏的藝術。透過本季限定優惠，讓 BBK 協助您打造理想的簡約家居。
           </motion.p>
         </header>
 
@@ -114,9 +114,9 @@ export default function Offers() {
                 </div>
               </div>
               
-              <button className="bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg">
+              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg">
                 立即申請名額
-              </button>
+              </a>
             </div>
             
             <div className="flex-1 w-full relative">
@@ -165,9 +165,9 @@ export default function Offers() {
                 預約即將落成的新館，享三年不漲價保障與首期八折優惠。限額 20 名優先登記中。
               </p>
               <div className="mt-12">
-                 <button className="w-full bg-secondary text-white py-4 rounded-xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                 <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="w-full bg-secondary text-white py-4 rounded-xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
                     <MessageCircle size={18} /> LINE 群組預留
-                 </button>
+                 </a>
               </div>
            </motion.div>
         </div>
@@ -208,9 +208,9 @@ export default function Offers() {
                     <span className="text-xs text-secondary font-bold">/ 月</span>
                   </div>
                   
-                  <button className="w-full border-2 border-primary/10 py-3 rounded-xl font-bold group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all">
+                  <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="block text-center w-full border-2 border-primary/10 py-3 rounded-xl font-bold group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all">
                     查看詳情並預約
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             ))}

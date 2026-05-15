@@ -5,9 +5,9 @@ export default function Locations() {
   const locations = [
     {
       id: "xinzhuang-fuda",
-      name: "新莊輔大倉",
-      address: "新北市新莊區建國一路 100 號",
-      phone: "02-2277-XXXX",
+      name: "新莊輔大1倉",
+      address: "新北市新莊區中正路651-1號6樓(遠東動力園區)",
+      phone: "(02)2906-6337",
       hours: "24H 全民進出",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
       features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"]
@@ -15,8 +15,8 @@ export default function Locations() {
     {
       id: "tucheng-central",
       name: "土城中央倉",
-      address: "新北市土城區中央路三段 80 號",
-      phone: "02-2266-XXXX",
+      address: "新北市土城區中央路二段209號B1",
+      phone: "(02)2906-6337",
       hours: "24H 全民進出",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
       features: ["近土城交流道", "溫濕度恆控", "全室錄影監控"]

@@ -29,15 +29,15 @@ export default function Contact() {
                 </div>
               </div>
               
-              <div className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20">
+              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20 hover:border-primary transition-all">
                 <div className="bg-primary-container/20 p-4 rounded-2xl text-primary">
                   <MessageSquare size={24} />
                 </div>
                 <div>
                   <p className="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-1">LINE Official</p>
-                  <p className="font-semibold">@kanketsu_storage</p>
+                  <p className="font-semibold text-primary">@anb6544c</p>
                 </div>
-              </div>
+              </a>
             </div>
 
             <div className="mt-16 flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -121,11 +121,11 @@ export default function Contact() {
               </div>
 
               <div className="pt-4">
-                <button className="w-full bg-primary text-on-primary py-5 rounded-[2rem] font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-                  <Send size={20} />
-                  送出預約諮詢
-                </button>
-                <p className="text-[10px] text-center text-on-surface-variant mt-4 opacity-70 italic font-medium">按送出即表示您同意本公司的個人資料保護政策</p>
+                <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="w-full bg-primary text-on-primary py-5 rounded-[2rem] font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+                  <MessageSquare size={20} />
+                  立即透過 LINE 諮詢
+                </a>
+                <p className="text-[10px] text-center text-on-surface-variant mt-4 opacity-70 italic font-medium">點擊上方按鈕直接加入 LINE 好友，由專人為您服務</p>
               </div>
             </form>
           </motion.div>

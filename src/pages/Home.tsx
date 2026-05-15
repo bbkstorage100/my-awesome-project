@@ -80,20 +80,17 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold uppercase tracking-widest mb-6">
-              Minimalist Storage
-            </span>
             <h1 className="text-5xl lg:text-7xl font-bold text-on-surface mb-8 leading-[1.1]">
               給生活一點留白，<br />找回空間的純粹。
             </h1>
             <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
-              Kanketsu 迷你倉以日式簡約美學出發，提供不僅是儲存空間，更是精緻生活的延續。讓雜物退場，讓舒適進駐。
+              擺寶庫迷你倉以提供最便利的服務為出發點，提供不僅是儲存空間，更是精緻生活的延續。讓雜物退場，讓舒適空間進駐。
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:brightness-95 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:brightness-95 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                 <MessageSquare size={20} />
                 立即詢價
-              </Link>
+              </a>
               <Link to="/offers" className="border-2 border-primary/20 text-primary px-10 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
                 了解方案
               </Link>
@@ -284,9 +281,9 @@ export default function Home() {
                 <p className="text-on-surface-variant text-sm mb-10">{p.suitable}</p>
                 <div className="mt-auto pt-8 border-t border-outline-variant/10 w-full">
                   <p className="text-2xl font-bold text-primary mb-6">NT$ {p.price} / 月起</p>
-                  <Link to="/contact" className={`block w-full py-4 rounded-xl font-bold transition-all shadow-lg hover:brightness-95 ${p.btnColor}`}>
+                  <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className={`block w-full py-4 rounded-xl font-bold transition-all shadow-lg hover:brightness-95 text-center ${p.btnColor}`}>
                     立即預約
-                  </Link>
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -302,9 +299,9 @@ export default function Home() {
             <p className="text-lg text-on-surface-variant mb-12 max-w-2xl mx-auto relative z-10">
               專業顧問將根據您的物品量，提供最精確的尺寸建議與報價。
             </p>
-            <Link to="/contact" className="inline-flex items-center gap-3 bg-primary text-on-primary px-12 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform shadow-2xl relative z-10">
+            <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-primary text-on-primary px-12 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform shadow-2xl relative z-10">
               <MessageSquare /> 獲取即時報價
-            </Link>
+            </a>
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           </div>
         </div>

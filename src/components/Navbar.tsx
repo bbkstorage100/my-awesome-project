@@ -19,7 +19,7 @@ export default function Navbar() {
     { name: '最新優惠', path: '/offers' },
     { name: '服務據點', path: '/locations' },
     { name: '常見問題', path: '/faq' },
-    { name: '聯絡我們', path: '/contact' },
+    { name: '聯絡我們', path: 'https://line.me/R/ti/p/@anb6544c', isExternal: true },
   ];
 
   return (
@@ -31,32 +31,44 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="font-headline text-lg font-bold text-primary leading-none">擺寶庫</span>
-            <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">Kanketsu Storage</span>
+            <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">BBK Storage</span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === link.path ? 'text-primary' : 'text-on-surface-variant'
-              } relative py-1`}
-            >
-              {link.name}
-              {location.pathname === link.path && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
-                />
-              )}
-            </Link>
+            link.isExternal ? (
+              <a
+                key={link.path}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors hover:text-primary text-on-surface-variant relative py-1"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  location.pathname === link.path ? 'text-primary' : 'text-on-surface-variant'
+                } relative py-1`}
+              >
+                {link.name}
+                {location.pathname === link.path && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  />
+                )}
+              </Link>
+            )
           ))}
-          <Link to="/contact" className="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-bold active:scale-95 transition-transform">
+          <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-bold active:scale-95 transition-transform">
             立即預約
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -75,24 +87,39 @@ export default function Navbar() {
             className="md:hidden bg-surface-container border-b border-outline-variant/20 px-6 py-8 flex flex-col gap-6 shadow-xl"
           >
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`text-lg font-medium ${
-                  location.pathname === link.path ? 'text-primary' : 'text-on-surface-variant'
-                }`}
-              >
-                {link.name}
-              </Link>
+              link.isExternal ? (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-on-surface-variant"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-lg font-medium ${
+                    location.pathname === link.path ? 'text-primary' : 'text-on-surface-variant'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
-            <Link
-              to="/contact"
+            <a
+              href="https://line.me/R/ti/p/@anb6544c"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               className="bg-primary text-on-primary text-center py-4 rounded-xl font-bold"
             >
               立即預約
-            </Link>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

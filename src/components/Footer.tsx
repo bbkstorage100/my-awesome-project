@@ -12,7 +12,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col">
               <span className="font-headline text-lg font-bold text-primary leading-none">擺寶庫</span>
-              <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">Kanketsu Storage</span>
+              <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">BBK Storage</span>
             </div>
           </Link>
           <p className="text-on-surface-variant max-w-sm text-base leading-relaxed">
@@ -28,7 +28,7 @@ export default function Footer() {
               Email: <a href="mailto:bbkstorage100@gmail.com" className="hover:text-primary underline decoration-primary/30">bbkstorage100@gmail.com</a>
             </li>
             <li className="text-sm text-on-surface-variant">
-              <a href="#" className="hover:text-primary underline decoration-primary/30">Line Official</a>
+              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline decoration-primary/30">Line Official</a>
             </li>
             <li className="text-sm text-on-surface-variant">
               <a href="#" className="hover:text-primary underline decoration-primary/30">Facebook Page</a>
@@ -51,7 +51,7 @@ export default function Footer() {
       
       <div className="max-w-7xl mx-auto px-6 py-8 border-t border-outline-variant/10 text-center">
         <p className="text-on-surface-variant text-xs opacity-70">
-          © 2024 Kanketsu Storage. Bringing peace of mind to your space.
+          © 2024 BBK Storage. Bringing peace of mind to your space.
         </p>
       </div>
     </footer>
