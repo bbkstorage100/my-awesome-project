@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box } from 'lucide-react';
+import { Box, Phone, Smartphone, MessageCircle, PhoneCall, Facebook, Mail, Globe } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -17,23 +17,40 @@ export default function Footer() {
           </Link>
           <p className="text-on-surface-variant max-w-sm text-base leading-relaxed">
             Bringing peace of mind to your space. <br />
-            透過整理，我們共同創造更有呼吸感的生活品質。以日式簡約美學為核心，為您打造理想的微型倉儲方案。
+            透過整理，我們共同創造更有呼吸感的生活品質。以客為本，為您打造理想的微型倉儲方案。
           </p>
         </div>
 
         <div>
           <h4 className="text-primary font-bold text-sm uppercase tracking-wider mb-6">聯絡資訊</h4>
-          <ul className="space-y-4">
-            <li className="text-sm text-on-surface-variant">
-              Email: <a href="mailto:bbkstorage100@gmail.com" className="hover:text-primary underline decoration-primary/30">bbkstorage100@gmail.com</a>
-            </li>
-            <li className="text-sm text-on-surface-variant">
-              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline decoration-primary/30">Line Official</a>
-            </li>
-            <li className="text-sm text-on-surface-variant">
-              <a href="#" className="hover:text-primary underline decoration-primary/30">Facebook Page</a>
-            </li>
-          </ul>
+          <div className="space-y-3 mb-8">
+            <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+              <Phone size={16} className="text-primary" />
+              <span>代表號：(02)2906-6337</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+              <Smartphone size={16} className="text-primary" />
+              <span>手機：0908-775-797</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-5">
+            <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors" title="LINE ID: @anb6544c">
+              <MessageCircle size={20} />
+            </a>
+            <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors" title="LINE 免費通話">
+              <PhoneCall size={20} />
+            </a>
+            <a href="https://www.facebook.com/bbk100storage" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors" title="Facebook">
+              <Facebook size={20} />
+            </a>
+            <a href="mailto:bbkstorage100@gmail.com" className="text-on-surface-variant hover:text-primary transition-colors" title="Email">
+              <Mail size={20} />
+            </a>
+            <a href="https://www.bbkstorage.com.tw" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors" title="Official Website">
+              <Globe size={20} />
+            </a>
+          </div>
         </div>
 
         <div>

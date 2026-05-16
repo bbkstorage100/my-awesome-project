@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Shield, Thermometer, Wind, ShoppingBag, Box, House, MessageSquare, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Shield, Thermometer, Wind, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -88,7 +88,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:brightness-95 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                <MessageSquare size={20} />
+                <MessageCircle size={20} />
                 立即詢價
               </a>
               <Link to="/offers" className="border-2 border-primary/20 text-primary px-10 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
@@ -300,7 +300,7 @@ export default function Home() {
               專業顧問將根據您的物品量，提供最精確的尺寸建議與報價。
             </p>
             <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-primary text-on-primary px-12 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform shadow-2xl relative z-10">
-              <MessageSquare /> 獲取即時報價
+              <MessageCircle /> 獲取即時報價
             </a>
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           </div>

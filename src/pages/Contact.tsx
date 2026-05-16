@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MessageSquare, Phone, MapPin, Send, Shield } from 'lucide-react';
+import { Mail, MessageCircle, Phone, MapPin, Send, Shield } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -77,7 +77,7 @@ ${formData.message || '無'}
               
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20 hover:border-primary transition-all">
                 <div className="bg-primary-container/20 p-4 rounded-2xl text-primary">
-                  <MessageSquare size={24} />
+                   <MessageCircle size={24} />
                 </div>
                 <div>
                   <p className="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-1">LINE Official</p>
