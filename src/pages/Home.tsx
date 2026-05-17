@@ -209,7 +209,7 @@ export default function Home() {
           </div>
           <div className="lg:w-1/2 relative">
             <img 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcu2-coaz_Ayg5IVgEVJJ6surrnqPHQ5-QXcXJTqkYJ1Ze0vTn_IO6-DMnwiF4opNIX_mmpefLEBbpUMcQCheish9itezUGLIbcAog9G4FXvUlP4QB8j2Ql0FwDGo2g5gMcSEUY6htwVtYarLsjTF56-Vq6rSQmdqwSSE_ShMHlzrlrTyVLAhS-q7ziBxVBDM61H52eZYs4y_IDtUsZng6tSQ2nenpLhVHF_ON8jpuBgNWzcgpRn7RREmLH1z11TbeesEkLao2R4dZ" 
+              src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260516%20image.png" 
               alt="Family" 
               className="rounded-[3rem] soft-shadow"
             />

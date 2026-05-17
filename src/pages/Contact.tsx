@@ -65,7 +65,7 @@ ${formData.message || '無'}
             </p>
             
             <div className="space-y-6">
-              <div className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20">
+              <a href="mailto:bbkstorage100@gmail.com?subject=聯繫擺寶庫迷你倉 - 詢問空間需求" className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20 hover:border-primary transition-all">
                 <div className="bg-primary-container/20 p-4 rounded-2xl text-primary">
                   <Mail size={24} />
                 </div>
@@ -73,7 +73,7 @@ ${formData.message || '無'}
                   <p className="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-1">Email</p>
                   <p className="font-semibold">bbkstorage100@gmail.com</p>
                 </div>
-              </div>
+              </a>
               
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 p-6 rounded-3xl bg-white border border-outline-variant/10 shadow-sm border-b-4 border-b-primary/20 hover:border-primary transition-all">
                 <div className="bg-primary-container/20 p-4 rounded-2xl text-primary">
@@ -103,7 +103,7 @@ ${formData.message || '無'}
           >
             <div className="text-center mb-12">
               <h2 className="text-2xl font-bold text-on-surface">今天我們能如何協助您？</h2>
-              <p className="text-on-surface-variant mt-2 text-sm">請寫下您的需求，我們將在 24 小時內回覆您。</p>
+              <p className="text-on-surface-variant mt-2 text-sm">請寫下您的需求，我們將在一個工作天內回覆您，以可以透過LINE帳號跟我們聯繫，以獲得更即時的協助喔。</p>
             </div>
 
             <form className="space-y-8" onSubmit={handleSubmit}>
@@ -132,17 +132,29 @@ ${formData.message || '無'}
 
               <div className="space-y-4">
                 <label className="text-sm font-bold text-on-surface-variant ml-1">感興趣的據點</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <label className={`flex items-center gap-4 p-5 rounded-2xl border transition-all cursor-pointer ${formData.locations.includes('新莊輔大倉') ? 'bg-primary/5 border-primary shadow-sm' : 'bg-surface-container border-outline-variant/30 hover:border-primary'}`}>
+                <div className="grid grid-cols-1 gap-4">
+                  <label className={`flex items-center gap-4 p-5 rounded-2xl border transition-all cursor-pointer ${formData.locations.includes('新莊輔大1倉') ? 'bg-primary/5 border-primary shadow-sm' : 'bg-surface-container border-outline-variant/30 hover:border-primary'}`}>
                     <input 
                       type="checkbox" 
-                      checked={formData.locations.includes('新莊輔大倉')}
-                      onChange={() => handleLocationChange('新莊輔大倉')}
+                      checked={formData.locations.includes('新莊輔大1倉')}
+                      onChange={() => handleLocationChange('新莊輔大1倉')}
                       className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" 
                     />
                     <div>
-                      <p className="font-bold text-sm">新莊輔大倉</p>
-                      <p className="text-[10px] text-on-surface-variant uppercase">Xinzhuang</p>
+                      <p className="font-bold text-sm">新莊輔大1倉</p>
+                      <p className="text-[10px] text-on-surface-variant font-medium">新北市新莊區中正路651之1號6樓</p>
+                    </div>
+                  </label>
+                  <label className={`flex items-center gap-4 p-5 rounded-2xl border transition-all cursor-pointer ${formData.locations.includes('新莊輔大2倉') ? 'bg-primary/5 border-primary shadow-sm' : 'bg-surface-container border-outline-variant/30 hover:border-primary'}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={formData.locations.includes('新莊輔大2倉')}
+                      onChange={() => handleLocationChange('新莊輔大2倉')}
+                      className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" 
+                    />
+                    <div>
+                      <p className="font-bold text-sm">新莊輔大2倉</p>
+                      <p className="text-[10px] text-on-surface-variant font-medium">新北市新莊區中正路651之1號8樓</p>
                     </div>
                   </label>
                   <label className={`flex items-center gap-4 p-5 rounded-2xl border transition-all cursor-pointer ${formData.locations.includes('土城中央倉') ? 'bg-primary/5 border-primary shadow-sm' : 'bg-surface-container border-outline-variant/30 hover:border-primary'}`}>
@@ -154,7 +166,7 @@ ${formData.message || '無'}
                     />
                     <div>
                       <p className="font-bold text-sm">土城中央倉</p>
-                      <p className="text-[10px] text-on-surface-variant uppercase">Tucheng</p>
+                      <p className="text-[10px] text-on-surface-variant font-medium">新北市土城區中央路二段209號B1</p>
                     </div>
                   </label>
                 </div>
@@ -198,7 +210,7 @@ ${formData.message || '無'}
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   className="w-full bg-surface-container-low border-b-2 border-primary/10 px-6 py-4 rounded-2xl focus:ring-0 focus:border-primary transition-all outline-none resize-none" 
-                  placeholder="請告訴我們您想存放的物品類型..." 
+                  placeholder="請簡單描述您想要寄放的物品大小、數量或是需求，謝謝。" 
                 />
               </div>
 
