@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Box } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -25,14 +25,13 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-surface/80 backdrop-blur-md shadow-sm border-b border-outline-variant/20' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center h-20">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="bg-primary p-2 rounded-xl">
-            <Box className="text-on-primary" size={24} />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-headline text-lg font-bold text-primary leading-none">擺寶庫</span>
-            <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">BBK Storage</span>
-          </div>
+        <Link to="/" className="flex items-center">
+          <img 
+            src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260515%20Logo-360x120%20T.png" 
+            alt="擺寶庫 BBK Storage Logo" 
+            className="h-10 md:h-12 w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
         </Link>
 
         {/* Desktop Nav */}
