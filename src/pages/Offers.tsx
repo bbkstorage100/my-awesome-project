@@ -75,7 +75,7 @@ export default function Offers() {
           <motion.h1 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-on-surface mb-8 leading-tight"
+            className="text-[38px] font-bold text-primary mb-8 leading-tight"
           >
             給您的空間，<br />一份呼吸的餘裕。
           </motion.h1>
@@ -100,7 +100,7 @@ export default function Offers() {
                 <Sparkles size={14} />
                 季節限定方案
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-on-surface mb-6">首月 1 元震撼優惠</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">首月 1 元震撼優惠</h2>
               <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">「開啟極簡生活，從第一步的體貼開始。」</p>
               <p className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
                 適用於全系列中型與大型倉儲單位。簽約六個月以上即可享有首月僅需 1 元的專屬禮遇，協助您輕鬆開啟減物生活。
@@ -175,7 +175,7 @@ export default function Offers() {
         {/* Featured Units / Product Options */}
         <section className="py-16">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">本月精選特價倉型</h2>
+            <h2 className="text-3xl font-bold text-primary mb-4">本月精選特價倉型</h2>
             <p className="text-on-surface-variant">針對不同收納需求，我們精選六款熱門規格提供專屬降價。</p>
           </div>
           
@@ -221,7 +221,7 @@ export default function Offers() {
         <section className="mt-24">
           <div className="bg-primary-container/10 rounded-[3rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 border border-primary/20">
             <div className="text-center md:text-left">
-               <h2 className="text-3xl font-bold mb-4">訂閱優惠通知</h2>
+               <h2 className="text-3xl font-bold text-primary mb-4">訂閱優惠通知</h2>
                <p className="text-on-surface-variant max-w-sm">第一時間獲得新據點開幕優惠與生活美學講座資訊。</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">

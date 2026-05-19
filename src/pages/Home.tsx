@@ -80,7 +80,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-[38px] font-bold text-on-surface mb-8 leading-[1.1]">
+            <h1 className="text-[38px] font-bold text-primary mb-8 leading-[1.1]">
               給生活一點留白，<br />找回空間的純粹。
             </h1>
             <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
@@ -125,7 +125,7 @@ export default function Home() {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-on-surface mb-4">各種收納可能</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4">各種收納可能</h2>
             <p className="text-on-surface-variant">不論是個人嗜好或商務需求，我們都有完美的空間對策。</p>
           </div>
           
@@ -188,7 +188,7 @@ export default function Home() {
       <section className="py-24 bg-surface-container-low">
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center gap-20">
           <div className="lg:w-1/2">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 leading-tight">比您的居家空間，<br />想得更多一點。</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-12 leading-tight">比您的居家空間，<br />想得更多一點。</h2>
             <div className="space-y-10">
               {[
                 { icon: <Thermometer />, title: "恆溫恆濕", desc: "專業控溫系統，保護您的珍藏不因潮濕發霉或質變。" },
@@ -225,7 +225,7 @@ export default function Home() {
       <section className="py-24 bg-background border-y border-outline-variant/10">
         <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
           <div className="mb-16">
-            <h2 className="text-4xl font-bold mb-4">輕鬆租倉四步驟</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">輕鬆租倉四步驟</h2>
             <p className="text-on-surface-variant">我們簡化了所有流程，讓收納變得優雅從容。</p>
           </div>
           
@@ -261,7 +261,7 @@ export default function Home() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold mb-4">挑選適合您的空間</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">挑選適合您的空間</h2>
             <p className="text-on-surface-variant">靈活租期，輕鬆收納。</p>
           </div>
           
@@ -295,7 +295,7 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="bg-primary-container/20 rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 relative z-10">現在就開始您的空間極簡計畫</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8 relative z-10">現在就開始您的空間極簡計畫</h2>
             <p className="text-lg text-on-surface-variant mb-12 max-w-2xl mx-auto relative z-10">
               專業顧問將根據您的物品量，提供最精確的尺寸建議與報價。
             </p>

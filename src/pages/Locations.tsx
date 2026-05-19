@@ -40,7 +40,7 @@ export default function Locations() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-on-surface mb-6"
+            className="text-[38px] font-bold text-primary mb-6"
           >
             尋找最靠近您的<br />極簡據點
           </motion.h1>
@@ -71,7 +71,7 @@ export default function Locations() {
               </div>
               
               <div className="p-10">
-                <h2 className="text-3xl font-bold text-on-surface mb-6">{loc.name}</h2>
+                <h2 className="text-3xl font-bold text-primary mb-6">{loc.name}</h2>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-4 text-on-surface-variant">
                     <MapPin className="text-primary shrink-0" size={20} />

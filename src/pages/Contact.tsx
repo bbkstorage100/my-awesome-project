@@ -59,7 +59,7 @@ ${formData.message || '無'}
             className="lg:col-span-5"
           >
             <span className="text-secondary font-bold uppercase tracking-widest text-xs mb-4 block">Inquiry Center</span>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-8 leading-tight">讓我們一起找尋<br />屬於您的空間</h1>
+            <h1 className="text-[38px] font-bold text-primary mb-8 leading-tight">讓我們一起找尋<br />屬於您的空間</h1>
             <p className="text-on-surface-variant text-lg mb-12 leading-relaxed">
               對我們的倉型有疑問，或是需要空間大小的建議嗎？我們的團隊隨時準備為您服務。
             </p>
@@ -102,7 +102,7 @@ ${formData.message || '無'}
             className="lg:col-span-7 bg-white rounded-[3rem] p-8 md:p-16 shadow-xl border border-outline-variant/20"
           >
             <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-on-surface">今天我們能如何協助您？</h2>
+              <h2 className="text-2xl font-bold text-primary">今天我們能如何協助您？</h2>
               <p className="text-on-surface-variant mt-2 text-sm">請寫下您的需求，我們將在一個工作天內回覆您，以可以透過LINE帳號跟我們聯繫，以獲得更即時的協助喔。</p>
             </div>
 
