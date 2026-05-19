@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MapPin, Phone, Clock, Monitor, Shield, Navigation, LayoutGrid } from 'lucide-react';
+import { MapPin, Phone, Clock, Shield, Navigation, LayoutGrid, Bus, TrainFront, ParkingCircle, CalendarCheck, User, UserRound } from 'lucide-react';
 
 export default function Locations() {
   const locations = [
@@ -8,27 +8,66 @@ export default function Locations() {
       name: "新莊輔大1倉",
       address: "新北市新莊區中正路651-1號6樓(遠東動力園區)",
       phone: "(02)2906-6337",
-      hours: "24H 全民進出",
+      hours: "24H憑門禁卡自由進出",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
-      features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"]
+      features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
+      extraInfo: {
+        appointment: "參觀倉儲採預約制",
+        toilet: "大樓提供廁所",
+        transport: {
+          bus: "111、235、637、638、639、801、802、藍2",
+          mrt: "中和新蘆線"
+        },
+        parking: [
+          "遠東動力園區卸貨碼頭1F/B1，免費臨時卸貨停車。",
+          "1F：上班時間開放(9:00AM ~ 06:00PM)",
+          "B1：卸貨碼頭24小時開放(卸貨臨停要請管理室放下停車位欄杆)。",
+          "或由中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
+        ]
+      }
     },
     {
       id: "xinzhuang-fuda-2",
       name: "新莊輔大2倉",
       address: "新北市新莊區中正路651-1號8樓(遠東動力園區)",
       phone: "(02)2906-6337",
-      hours: "24H 全民進出",
+      hours: "24H憑門禁卡自由進出",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
-      features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"]
+      features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
+      extraInfo: {
+        appointment: "參觀倉儲採預約制",
+        toilet: "大樓提供廁所",
+        transport: {
+          bus: "111、235、637、638、639、801、802、藍2",
+          mrt: "中和新蘆線"
+        },
+        parking: [
+          "遠東動力園區卸貨碼頭1F/B1，免費臨時卸貨停車。",
+          "1F：上班時間開放(9:00AM ~ 06:00PM)",
+          "B1：卸貨碼頭24小時開放(卸貨臨停要請管理室放下停車位欄杆)。",
+          "或由中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
+        ]
+      }
     },
     {
       id: "tucheng-central",
       name: "土城中央倉",
       address: "新北市土城區中央路二段209號B1",
       phone: "(02)2906-6337",
-      hours: "24H 全民進出",
+      hours: "24H憑門禁卡自由進出",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
-      features: ["近土城交流道", "溫濕度恆控", "全室錄影監控"]
+      features: ["近土城交流道", "溫濕度恆控", "全室錄影監控"],
+      extraInfo: {
+        appointment: "參觀倉儲採預約制",
+        toilet: "本場所提供廁所",
+        transport: {
+          bus: "土城農會站573、705、707、805、1851、1962",
+          mrt: "板南線土城捷運站二號出口步行5分鐘就到了"
+        },
+        parking: [
+          "本場所提供兩個免費的臨時卸貨車位在社區大樓B2層(18、19號停車位)。"
+        ]
+      }
     }
   ];
 
@@ -85,6 +124,53 @@ export default function Locations() {
                     <Clock className="text-primary shrink-0" size={20} />
                     <span className="text-sm font-medium">{loc.hours}</span>
                   </div>
+                  <div className="flex items-center gap-4 text-on-surface-variant">
+                    <CalendarCheck className="text-primary shrink-0" size={20} />
+                    <span className="text-sm font-medium">{loc.extraInfo.appointment}</span>
+                  </div>
+                  <div className="flex items-center gap-4 text-on-surface-variant">
+                    <div className="flex -space-x-2.5 items-center">
+                      <User className="text-primary shrink-0" size={20} />
+                      <UserRound className="text-primary shrink-0" size={20} />
+                    </div>
+                    <span className="text-sm font-medium">{loc.extraInfo.toilet}</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  <div className="p-4 bg-surface-container/50 rounded-3xl border border-outline-variant/10">
+                    <h4 className="flex items-center gap-2 text-primary font-bold text-sm mb-3">
+                      <Bus size={16} /> 大眾運輸
+                    </h4>
+                    <div className="space-y-2 text-[11px] leading-relaxed">
+                      <div>
+                        <div className="text-on-surface-variant/60 font-bold mb-0.5 flex items-center gap-1">
+                          <Bus size={10} /> 公車
+                        </div>
+                        <p className="text-on-surface-variant">{loc.extraInfo.transport.bus}</p>
+                      </div>
+                      <div>
+                        <div className="text-on-surface-variant/60 font-bold mb-0.5 flex items-center gap-1">
+                          <TrainFront size={10} /> 捷運
+                        </div>
+                        <p className="text-on-surface-variant">{loc.extraInfo.transport.mrt}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-surface-container/50 rounded-3xl border border-outline-variant/10">
+                    <h4 className="flex items-center gap-2 text-primary font-bold text-sm mb-3">
+                      <ParkingCircle size={16} /> 停車資訊
+                    </h4>
+                    <ul className="space-y-1.5 text-[11px] text-on-surface-variant list-none leading-relaxed">
+                      {loc.extraInfo.parking.map((p, i) => (
+                        <li key={i} className="flex gap-1.5">
+                          <span className="text-primary mt-1 shrink-0">•</span>
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-10">
@@ -94,12 +180,22 @@ export default function Locations() {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="flex-1 bg-primary text-on-primary py-4 rounded-2xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                  <a 
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-primary text-on-primary py-4 rounded-2xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                  >
                     <Navigation size={18} /> 路線導航
-                  </button>
-                  <button className="flex-1 border-2 border-primary/20 text-primary py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
-                    實地參觀
-                  </button>
+                  </a>
+                  <a 
+                    href="https://line.me/R/ti/p/@anb6544c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 border-2 border-primary/20 text-primary py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all flex items-center justify-center"
+                  >
+                    聯繫客服
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -112,7 +208,7 @@ export default function Locations() {
              <LayoutGrid className="mx-auto text-primary mb-6 w-12 h-12 opacity-50" />
              <h3 className="text-2xl font-bold text-primary mb-4">更多據點規劃中</h3>
              <p className="text-on-surface-variant mb-0 max-w-sm mx-auto">
-                我們正積極尋找下一個極簡空間。板橋、中和、永和據點即將登場。
+                我們正在積極尋找下一個倉儲空間，歡迎聯繫我們。
              </p>
            </div>
            <div className="absolute inset-0 bg-white/20 backdrop-blur-3xl -z-0" />

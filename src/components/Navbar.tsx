@@ -28,7 +28,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center">
           <img 
             src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260515%20Logo-360x120%20T.png" 
-            alt="擺寶庫 BBK Storage Logo" 
+            alt="擺寶庫迷你倉 Logo" 
             className="h-[52px] md:h-[62px] w-auto object-contain"
             referrerPolicy="no-referrer"
           />

@@ -82,7 +82,7 @@ export default function Offers() {
             transition={{ delay: 0.2 }}
             className="text-lg text-on-surface-variant leading-relaxed"
           >
-            我們相信收納不只是整理，更是重新找回生活節奏的藝術。透過本季限定優惠，讓 BBK 協助您打造理想的簡約家居。
+            我們相信收納不只是整理，更是重新找回生活節奏的藝術。透過本季限定優惠，讓 擺寶庫迷你倉 協助您打造理想的簡約家居。
           </motion.p>
         </header>
 
