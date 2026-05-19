@@ -149,7 +149,7 @@ export default function FAQ() {
            <div className="bg-surface-container-low rounded-[3rem] p-12 md:p-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative overflow-hidden">
               <div className="relative z-10">
                 <span className="text-secondary font-bold text-xs uppercase tracking-widest mb-4 block">Support Center</span>
-                <h1 className="text-[38px] font-bold text-primary mb-6">常見問題解答</h1>
+                <h1 className="text-[38px] font-bold text-primary mb-6">常見問題</h1>
                 <p className="text-on-surface-variant text-lg leading-relaxed max-w-md">
                   我們致力於為您提供最簡便的倉儲體驗。在這裡您可以找到有關租期、安全及存放規定的細節。
                 </p>

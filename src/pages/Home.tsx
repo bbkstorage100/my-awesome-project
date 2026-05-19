@@ -137,7 +137,7 @@ export default function Home() {
                 className={`${s.span} p-8 rounded-[2.5rem] border border-outline-variant/30 soft-shadow group`}
               >
                 {s.icon}
-                <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
+                <h3 className="text-2xl font-bold text-primary mb-3">{s.title}</h3>
                 <p className="text-on-surface-variant mb-6">{s.desc}</p>
                 <div className="overflow-hidden rounded-2xl">
                   <img src={s.img} alt={s.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -151,7 +151,7 @@ export default function Home() {
             >
               <div>
                 <ShoppingBag className="text-primary w-8 h-8 mb-4" />
-                <h3 className="text-xl font-bold mb-2">公司帳冊</h3>
+                <h3 className="text-xl font-bold text-primary mb-2">公司帳冊</h3>
                 <p className="text-sm text-on-surface-variant">符合法規的長期存放空間。</p>
               </div>
             </motion.div>
@@ -162,7 +162,7 @@ export default function Home() {
             >
               <div className="flex-1">
                 <Box className="text-primary w-10 h-10 mb-4" />
-                <h3 className="text-2xl font-bold mb-2">電商倉儲</h3>
+                <h3 className="text-2xl font-bold text-primary mb-2">電商倉儲</h3>
                 <p className="text-on-surface-variant">微型創業的最佳夥伴，24H 隨時存取。</p>
               </div>
               <div className="hidden sm:block w-1/3">
@@ -176,7 +176,7 @@ export default function Home() {
             >
               <div>
                 <House size={32} className="text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">辦公家具</h3>
+                <h3 className="text-xl font-bold text-primary mb-2">辦公家具</h3>
                 <p className="text-sm text-on-surface-variant">搬遷或裝潢時的緩衝站。</p>
               </div>
             </motion.div>
@@ -242,7 +242,7 @@ export default function Home() {
                 <div className="bg-primary/5 w-16 h-16 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
                   {s.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{s.title}</h3>
+                <h3 className="text-xl font-bold text-primary mb-4">{s.title}</h3>
                 <p className="text-on-surface-variant leading-relaxed text-sm">
                   {s.desc}
                 </p>
@@ -277,7 +277,7 @@ export default function Home() {
                    <Box className="w-20 h-20 text-primary opacity-20" />
                 </div>
                 <span className="text-xs font-bold px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container mb-4">{p.type}</span>
-                <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
+                <h3 className="text-2xl font-bold text-primary mb-4">{p.title}</h3>
                 <p className="text-on-surface-variant text-sm mb-10">{p.suitable}</p>
                 <div className="mt-auto pt-8 border-t border-outline-variant/10 w-full">
                   <p className="text-2xl font-bold text-primary mb-6">NT$ {p.price} / 月起</p>

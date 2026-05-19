@@ -1,64 +1,61 @@
 import { motion } from 'motion/react';
-import { Tag, Sparkles, Truck, Check, ChevronDown, MessageCircle, LayoutGrid, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import { Tag, Sparkles, Truck, Check, MessageCircle, LayoutGrid, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+// ⚠️ 這裡定義從 Supabase 捞出來的資料型態 (TypeScript Interface)
+interface StoragePromotion {
+  id: number;
+  warehouse_name: string;
+  unit_type: string;
+  dimensions: string;
+  original_price: number;
+  promo_price: number;
+  available_count: number;
+  image_url: string;
+  is_active: boolean;
+}
 
 export default function Offers() {
-  const featuredUnits = [
-    { 
-      title: "輕量個人倉", 
-      size: "1.0m x 1.0m", 
-      price: "880", 
-      oldPrice: "1,200", 
-      tag: "熱銷", 
-      location: "新莊旗艦倉",
-      image: "https://images.unsplash.com/photo-1549194388-f61be84a6e9e?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "衣物收納倉", 
-      size: "1.2m x 1.5m", 
-      price: "1,380", 
-      oldPrice: "1,800", 
-      tag: "推薦", 
-      location: "土城捷運倉",
-      image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "家居雜物倉", 
-      size: "1.5m x 1.5m", 
-      price: "1,880", 
-      oldPrice: "2,500", 
-      tag: "超值", 
-      location: "板橋府中倉",
-      image: "https://images.unsplash.com/photo-1621905252507-b35242f8df69?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "中型家具倉", 
-      size: "2.0m x 2.0m", 
-      price: "2,880", 
-      oldPrice: "3,600", 
-      tag: "限時", 
-      location: "新店碧潭倉",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "商業物資倉", 
-      size: "2.5m x 3.0m", 
-      price: "4,580", 
-      oldPrice: "5,800", 
-      tag: "商用", 
-      location: "三重工業倉",
-      image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "旗艦儲物間", 
-      size: "3.5m x 4.0m", 
-      price: "7,280", 
-      oldPrice: "9,000", 
-      tag: "奢華", 
-      location: "中和環球倉",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+  // 1. 建立儲存促銷資料的狀態 (State)
+  const [featuredUnits, setFeaturedUnits] = useState<StoragePromotion[]>([]);
+  // 2. 建立載入中的狀態
+  const [loading, setLoading] = useState(true);
+
+  // ⚠️ 請在此處填入您的 Supabase 設定（這在 GitHub Pages 前端是公開的，請務必開啟 RLS 安全防護）
+  const SUPABASE_URL = "https://ttmythpjaukwxdaapwlu.supabase.co"; 
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0bXl0aHBqYXVrd3hkYWFwd2x1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MzA0NTMsImV4cCI6MjA5NDUwNjQ1M30.NFvTSeihg33_XugQXNUV3lkm0H0YXogNRD5sc1bMFQY"; 
+
+  useEffect(() => {
+    async function fetchPromotions() {
+      try {
+        // 使用原生 fetch() API 直接捞取 Supabase REST API 的數據
+        // 過濾條件：is_active = true 且 available_count 必須大於 0
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/storage_promotions?is_active=eq.true&available_count=gt.0`,
+          {
+            method: 'GET',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+
+        if (!response.ok) throw new Error('資料庫連線失敗');
+        const data = await response.json();
+        
+        // 將撈到的數據存入狀態中
+        setFeaturedUnits(data);
+      } catch (error) {
+        console.error("無法讀取最新促銷倉型數據:", error);
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    fetchPromotions();
+  }, []);
 
   return (
     <div className="pt-32 pb-24 min-h-screen bg-background">
@@ -139,7 +136,7 @@ export default function Offers() {
               <div className="bg-primary-container/20 text-on-primary-container px-4 py-1 rounded-full text-xs font-bold mb-8 self-start flex items-center gap-2">
                 <Truck size={14} /> 搬家特惠
               </div>
-              <h3 className="text-3xl font-bold mb-6">專業搬運免運費</h3>
+              <h3 className="text-3xl font-bold text-primary mb-6">推薦專業搬家公司</h3>
               <p className="text-on-surface-variant mb-auto text-base leading-relaxed">
                 預約大型單位一年期，我們提供專業搬家團隊免費載運服務一次。給心愛物品最溫柔的對待。
               </p>
@@ -160,61 +157,82 @@ export default function Offers() {
               <div className="bg-secondary-container/50 text-secondary px-4 py-1 rounded-full text-xs font-bold mb-8 self-start flex items-center gap-2">
                 <Tag size={14} /> 早鳥預約
               </div>
-              <h3 className="text-3xl font-bold mb-6">新館開幕超前部署</h3>
+              <h3 className="text-3xl font-bold text-primary mb-6">新館開幕超前部署</h3>
               <p className="text-on-surface-variant mb-auto text-base leading-relaxed">
                 預約即將落成的新館，享三年不漲價保障與首期八折優惠。限額 20 名優先登記中。
               </p>
               <div className="mt-12">
                  <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="w-full bg-secondary text-white py-4 rounded-xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
-                    <MessageCircle size={18} /> LINE 群組預留
+                     <MessageCircle size={18} /> LINE 群組預留
                  </a>
               </div>
            </motion.div>
         </div>
 
-        {/* Featured Units / Product Options */}
+        {/* Featured Units / Product Options (動態資料渲染區) */}
         <section className="py-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-primary mb-4">本月精選特價倉型</h2>
-            <p className="text-on-surface-variant">針對不同收納需求，我們精選六款熱門規格提供專屬降價。</p>
+            <p className="text-on-surface-variant">針對不同收納需求，我們精選熱門規格提供專屬降價。</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredUnits.map((item, idx) => (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-[2rem] border border-outline-variant/30 relative overflow-hidden group hover:shadow-2xl transition-all"
-              >
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute top-4 right-4 bg-primary text-on-primary text-[10px] font-bold px-3 py-1 rounded-full shadow-lg">
-                    {item.tag}
+          {loading ? (
+            // 載入中的骨架屏效果 (Skeleton)
+            <div className="text-center py-12 text-on-surface-variant font-medium">
+              正在為您同步最新倉庫促銷數據...
+            </div>
+          ) : featuredUnits.length === 0 ? (
+            // 資料庫沒資料時的防錯顯示
+            <div className="text-center py-12 text-on-surface-variant/60">
+              目前暫無促銷倉型上架。
+            </div>
+          ) : (
+            // 當有資料時，使用 .map() 依據 Supabase 的陣列長度自動畫卡片
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredUnits.map((item) => (
+                <motion.div 
+                  key={item.id}
+                  whileHover={{ y: -10 }}
+                  className="bg-white rounded-[2rem] border border-outline-variant/30 relative overflow-hidden group hover:shadow-2xl transition-all"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img 
+                      src={item.image_url || "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"} 
+                      alt={item.unit_type} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    />
+                    
+                    {/* ⚠️ 核心功能：依據數量自動更換標籤（當剩餘數量小於 3 顯示即將滿倉，否則顯示特惠中） */}
+                    <div className={`absolute top-4 right-4 text-white text-[10px] font-bold px-4 py-1.5 rounded-full shadow-lg backdrop-blur-sm ${
+                      item.available_count < 3 ? 'bg-[#a3866a] animate-pulse' : 'bg-primary/90'
+                    }`}>
+                      {item.available_count < 3 ? `僅剩 ${item.available_count} 倉` : '特惠中'}
+                    </div>
                   </div>
-                </div>
-                
-                <div className="p-8">
-                  <div className="flex items-center gap-2 text-primary font-bold text-xs mb-3">
-                    <MapPin size={14} /> {item.location}
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                  <p className="text-sm text-on-surface-variant mb-6 flex items-center gap-2">
-                    <LayoutGrid size={14} className="text-primary/40" /> {item.size}
-                  </p>
                   
-                  <div className="flex items-baseline gap-3 mb-8">
-                    <span className="text-2xl font-bold text-primary">NT$ {item.price}</span>
-                    <span className="text-sm text-on-surface-variant/40 line-through font-medium">NT$ {item.oldPrice}</span>
-                    <span className="text-xs text-secondary font-bold">/ 月</span>
+                  <div className="p-8">
+                    <div className="flex items-center gap-2 text-primary font-bold text-xs mb-3">
+                      <MapPin size={14} /> {item.warehouse_name}
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">{item.unit_type}</h4>
+                    <p className="text-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                      <LayoutGrid size={14} className="text-primary/40" /> {item.dimensions}
+                    </p>
+                    
+                    <div className="flex items-baseline gap-3 mb-8">
+                      <span className="text-2xl font-bold text-primary">NT$ {item.promo_price.toLocaleString()}</span>
+                      <span className="text-sm text-on-surface-variant/40 line-through font-medium">NT$ {item.original_price.toLocaleString()}</span>
+                      <span className="text-xs text-secondary font-bold">/ 月</span>
+                    </div>
+                    
+                    <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="block text-center w-full border-2 border-primary/10 py-3 rounded-xl font-bold group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all">
+                      查看詳情並預約
+                    </a>
                   </div>
-                  
-                  <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="block text-center w-full border-2 border-primary/10 py-3 rounded-xl font-bold group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all">
-                    查看詳情並預約
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Newsletter */}

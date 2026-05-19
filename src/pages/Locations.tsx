@@ -110,7 +110,7 @@ export default function Locations() {
         <section className="mt-24 text-center p-16 bg-surface-container rounded-[4rem] border border-outline-variant/30 relative overflow-hidden">
            <div className="relative z-10">
              <LayoutGrid className="mx-auto text-primary mb-6 w-12 h-12 opacity-50" />
-             <h3 className="text-2xl font-bold mb-4">更多據點規劃中</h3>
+             <h3 className="text-2xl font-bold text-primary mb-4">更多據點規劃中</h3>
              <p className="text-on-surface-variant mb-0 max-w-sm mx-auto">
                 我們正積極尋找下一個極簡空間。板橋、中和、永和據點即將登場。
              </p>
