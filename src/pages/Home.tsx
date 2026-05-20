@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Shield, Thermometer, Wind, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Shield, Calendar, Droplets, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SolutionsCarousel from '../components/SolutionsCarousel';
 
@@ -29,28 +29,31 @@ export default function Home() {
 
   const pricing = [
     { 
-      type: "小型櫃 / 上層", 
+      type: "上層倉型", 
       title: "極簡上層空間", 
       price: "980", 
       suitable: "適合：珍貴收藏、文件帳冊、小型生活雜物",
       featured: false,
-      btnColor: "bg-primary text-on-primary"
+      btnColor: "bg-primary text-on-primary",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1683028442931.jpg"
     },
     { 
-      type: "中型櫃 / 下層", 
+      type: "下層倉型", 
       title: "黃金便利空間", 
       price: "1,680", 
       suitable: "適合：露營裝備、換季衣物、中型收納箱",
       featured: true,
-      btnColor: "bg-secondary text-on-secondary"
+      btnColor: "bg-secondary text-on-secondary",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230328_150107-1.png"
     },
     { 
-      type: "大型櫃 / 獨立式", 
+      type: "獨立大倉", 
       title: "商務超值空間", 
       price: "2,800", 
       suitable: "適合：電商存貨、大型家具、公司資產",
       featured: false,
-      btnColor: "bg-primary-container text-on-primary-container"
+      btnColor: "bg-primary-container text-on-primary-container",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230328_150216-1.png"
     }
   ];
 
@@ -125,9 +128,9 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-12 leading-tight">比您的居家空間，<br />想得更多一點。</h2>
             <div className="space-y-10">
               {[
-                { icon: <Thermometer />, title: "恆溫恆濕", desc: "專業控溫系統，保護您的珍藏不因潮濕發霉或質變。" },
-                { icon: <Shield />, title: "24H 門禁守護", desc: "智慧門禁系統搭配紅外線監控，您的物品安全是優先項目。" },
-                { icon: <Wind />, title: "工業級除濕", desc: "確保空氣清新乾燥，最適合精密儀器與高級皮革儲放。" }
+                { icon: <Calendar />, title: "彈性儲存空間", desc: "彈性租約，最短租期一個月，臨時空間需求的好幫手。" },
+                { icon: <Shield />, title: "24H 門禁監控守護", desc: "智慧門禁系統搭配高畫質監控攝影機，您的物品安全是優先項目。" },
+                { icon: <Droplets />, title: "工業級除濕", desc: "工業級濕度控制系統，倉庫內濕度保持在55~60°，保護您的收藏不因潮濕發霉或質變。" }
               ].map((f, i) => (
                 <div key={i} className="flex gap-6">
                   <div className="bg-white p-4 rounded-2xl shadow-sm text-secondary shrink-0 self-start">
@@ -206,8 +209,19 @@ export default function Home() {
                 className={`bg-white p-10 rounded-[2.5rem] flex flex-col items-center h-full text-center border transition-all ${p.featured ? 'border-primary border-2 shadow-xl relative z-10' : 'border-outline-variant/30 hover:border-primary'}`}
               >
                 {p.featured && <span className="absolute -top-4 bg-primary text-on-primary px-6 py-1 rounded-full text-xs font-bold uppercase tracking-widest">熱門推薦</span>}
-                <div className="w-full aspect-video bg-surface-container-low rounded-2xl mb-8 flex items-center justify-center">
-                   <Box className="w-20 h-20 text-primary opacity-20" />
+                <div className="w-full bg-surface-container-low rounded-2xl mb-8 flex items-center justify-center overflow-hidden">
+                  {p.img ? (
+                    <img 
+                      src={p.img} 
+                      alt={p.title} 
+                      className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="aspect-video w-full flex items-center justify-center">
+                      <Box className="w-20 h-20 text-primary opacity-20" />
+                    </div>
+                  )}
                 </div>
                 <span className="text-xs font-bold px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container mb-4">{p.type}</span>
                 <h3 className="text-2xl font-bold text-primary mb-4">{p.title}</h3>

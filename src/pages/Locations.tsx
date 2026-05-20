@@ -9,7 +9,7 @@ export default function Locations() {
       address: "新北市新莊區中正路651-1號6樓(遠東動力園區)",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-6F/20240423_153944-1.png",
       features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
@@ -32,7 +32,7 @@ export default function Locations() {
       address: "新北市新莊區中正路651-1號8樓(遠東動力園區)",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1719560262092-1.png",
       features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
@@ -55,7 +55,7 @@ export default function Locations() {
       address: "新北市土城區中央路二段209號B1",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAs-z2U3OQ5I3-a-pYFvj394Qf-wI020_0yXmHREz9fE1JvjY5W6Y-9L5C_6R2H-YI9Rz3H1N1N",
+      img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230331_191055-1.png",
       features: ["近土城交流道", "溫濕度恆控", "全室錄影監控"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
@@ -100,9 +100,10 @@ export default function Locations() {
             >
               <div className="relative h-72 overflow-hidden">
                 <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8j3NEOnWtvYZtR2Kk3JZ1NcGMbC_rYQHNjV2hInl7oLN5kccKLqiGneCi42AW_D1eQwbQnhQwPqIj4Y4LIggrmZ5mv00P6WsGjQpe2MMbPcbBEeHjM1_tpcYikw4E69yxSasQ7Bd6hdqdHoIDvVFfBiLbfDlaO4AD0M47Gv9tnoZiZFs2rpCZxgWnNeBHD2KW2JT1o5UMixadGO2lqDEpyulTX8d9xcGCXvIYuJWnpQpO5bO7GP5NT9c_Jm372ChyAu_LkArUOida" 
+                  src={loc.img} 
                   alt={loc.name} 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-primary flex items-center gap-2">
                   <Shield size={14} /> 專業保全
