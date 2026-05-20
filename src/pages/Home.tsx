@@ -71,12 +71,12 @@ export default function Home() {
               擺寶庫迷你倉以提供最便利的服務為出發點，提供不僅是儲存空間，更是精緻生活的延續。讓雜物退場，讓舒適空間進駐。
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:brightness-95 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-primary/95 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
                 <MessageCircle size={20} />
                 立即詢價
               </a>
-              <Link to="/offers" className="border-2 border-primary/20 text-primary px-10 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
-                了解方案
+              <Link to="/offers" className="border-2 border-primary/25 hover:border-primary/50 text-primary px-10 py-4 rounded-2xl font-bold hover:bg-primary/5 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 cursor-pointer text-center">
+                最新優惠訊息
               </Link>
             </div>
           </motion.div>
@@ -120,8 +120,8 @@ export default function Home() {
 
       {/* Facilities */}
       <section className="py-24 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center gap-20">
-          <div className="lg:w-1/2">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center gap-16">
+          <div className="lg:w-2/3">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-12 leading-tight">比您的居家空間，<br />想得更多一點。</h2>
             <div className="space-y-10">
               {[
@@ -141,15 +141,14 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="lg:w-1/2 relative">
-            <img 
-              src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260516%20image.png" 
-              alt="Family" 
-              className="rounded-[3rem] soft-shadow"
-            />
-            <div className="absolute top-1/2 -left-12 -translate-y-1/2 bg-primary p-10 rounded-3xl shadow-2xl hidden lg:block text-on-primary">
-              <p className="text-4xl font-bold mb-1">99%</p>
-              <p className="text-xs uppercase tracking-widest opacity-80">客戶滿意度</p>
+          <div className="lg:w-1/3 w-full">
+            <div className="bg-primary p-12 rounded-[2.5rem] shadow-xl text-on-primary text-center relative overflow-hidden">
+              <p className="text-7xl font-black mb-3">99%</p>
+              <p className="text-sm uppercase tracking-widest opacity-80 font-semibold">客戶滿意度</p>
+              <div className="mt-8 pt-8 border-t border-on-primary/10 text-sm opacity-90 leading-relaxed">
+                擺寶庫始終承諾為您提供最高標準的恆溫濕控與全天候隨時存取的頂級服務，最值得您信賴。
+              </div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
             </div>
           </div>
         </div>

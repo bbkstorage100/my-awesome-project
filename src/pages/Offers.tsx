@@ -95,21 +95,15 @@ export default function Offers() {
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
                 <Sparkles size={14} />
-                季節限定方案
+                2026季節限定方案
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">首月 1 元震撼優惠</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">首月 8折 震撼優惠</h2>
               <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">「開啟極簡生活，從第一步的體貼開始。」</p>
               <p className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
-                適用於全系列中型與大型倉儲單位。簽約六個月以上即可享有首月僅需 1 元的專屬禮遇，協助您輕鬆開啟減物生活。
+                適用於 新莊2倉 全系列倉儲單位。簽約六個月以上即可享有首月 8 折 的專屬禮遇，協助您輕鬆開啟極簡生活。
               </p>
               
-              <div className="flex items-end gap-4 mb-10">
-                <span className="text-primary font-bold text-4xl">NT$ 1 / 月</span>
-                <div className="flex flex-col text-on-surface-variant/40 text-[10px] leading-tight mb-1">
-                  <span className="line-through">原價 NT$</span>
-                  <span className="line-through">3,200</span>
-                </div>
-              </div>
+
               
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg">
                 立即申請名額
@@ -138,11 +132,11 @@ export default function Offers() {
               </div>
               <h3 className="text-3xl font-bold text-primary mb-6">推薦專業搬家公司</h3>
               <p className="text-on-surface-variant mb-auto text-base leading-relaxed">
-                預約大型單位一年期，我們提供專業搬家團隊免費載運服務一次。給心愛物品最溫柔的對待。
+                預約搬家服務，我們提供專業搬家團隊聯絡方式。給心愛物品最溫柔的對待。
               </p>
               <div className="mt-12 space-y-4">
                  <div className="flex items-center gap-2 text-secondary font-bold text-sm">
-                   <Check size={16} /> 限定雙北地區
+                   <Check size={16} /> 限定北部地區
                  </div>
                  <button className="w-full border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary/5 transition-all">
                     查看完整細則
