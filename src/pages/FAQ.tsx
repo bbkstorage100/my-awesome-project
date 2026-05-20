@@ -156,7 +156,7 @@ export default function FAQ() {
               </div>
               <div className="h-64 md:h-full relative z-10">
                 <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJOHyV7MFR7Xz9qqJBbj2n8jVp8rt-Py9r8L0eKG4RbM4J1P8PPri66wfJ9uHDaowPAA3p1LjwxQcR95EsVfGAHr05VdZtF5qqyrkHUxCDlMsyzEArL5bvkCxY1lnDoOgyy0TqeKSP5_tdjsJcDUXalH_zaeas7RWkbLvKYYwlCYYIVSHBS2LpprNuxIqViAl_apC1cW9IVlsIUR80b6bLi6kVTtiCgsN0QfWc4Qp5_PaDh93TUyTFv_9sswPaoI7v7VOpV4adPk8r" 
+                  src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/20260516-2%20image.png" 
                   alt="Storage Space" 
                   className="rounded-[2.5rem] w-full h-full object-cover soft-shadow"
                 />

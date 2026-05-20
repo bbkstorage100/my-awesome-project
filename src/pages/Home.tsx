@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Shield, Thermometer, Wind, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SolutionsCarousel from '../components/SolutionsCarousel';
 
 export default function Home() {
   const steps = [
@@ -23,23 +24,6 @@ export default function Home() {
       icon: <Key className="w-8 h-8" />,
       title: "4. 隨時入倉儲放",
       desc: "簽約完成立即生效，享 24H 不限次數隨時自由進出。"
-    }
-  ];
-
-  const solutions = [
-    {
-      title: "換季衣物與雜物",
-      desc: "讓家中的衣櫃深呼吸，收納那些暫時用不到的溫暖與回憶。",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB1vv60KKOpi5Qpr2Pxe2izJQlJNOesVX5UhoXDV6MKqHQ1HPNsGxNMVqK5v5k09bS9KzrYi39aljSDnEEaCS2mFZh-ICqFYpl56xwtBkdx24xAeBK7naqsNuOq3eNsRTEz4Hl6OefAvRkUEt2XdgKsnnlw9RmBLAqdAWXk45mGee0Mogkpk_-nOTYYWQ_fHCZz4jBfMzBcDpcHjmPMlDf8cNI8A2kgoPr5iDvXNBHT2HtfCZG4pBIbpwxXJ0htIVqeBiEW4LrC57XF",
-      span: "md:col-span-2 bg-white",
-      icon: <CheckCircle2 className="text-primary w-10 h-10 mb-4" />
-    },
-    {
-      title: "收藏品與露營用品",
-      desc: "珍貴的公仔、黑膠唱片，或是佔位的大型露營裝備，在這裡都有家。",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAaB7-OivS8NE6bXW7rgQ6xON7_5eGp42LqPHOSVXn4x1OtgiDBjaY5hTtXvg44-5OOO6XqY7aWWoKW_UG_ORy7hHYBCfM1JKh-Dgvct4TrX-CE8tq3Clu1PE0yXjMoOi7YVE2dpbiYApwQJ5lEzSeOktSPgfWfIlytp7Xzizj96mccNTACMYgt9GoJfAxd4rIoSIYHVCfqqpygRV48sHNZhdJRIC7_y4mNg-xXmIz5mD8jH2JmANdFVJZypVki74sLIgkpAVfyi8w_",
-      span: "md:col-span-2 bg-surface-container",
-      icon: <Box className="text-primary w-10 h-10 mb-4" />
     }
   ];
 
@@ -104,9 +88,10 @@ export default function Home() {
             className="relative"
           >
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvcdbiRzPWe-RUpvqfWVCvymolw1-W-hGHurNYwYoDeF91cfPVq8JF4oeWiwipf1nISrzgxtgQDPh611w6Nv_TtumgBxO79gvynpZG-r40wJUPH14YFqHj3ja3kJHZoR8jPNq3S8thdP79Kp2eQ8Uj8J_cFSieLkxPnI9eGhABnMNN8XcMOkuFsJ1GRrpyLjr7nWtGM98S2WVe3CgattHA2tPHRsyrACeYP6fummW_Da4R80QdA7brC4k0rE90aoboDtrOb5PdtED1"
+              src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/20260516-2%20image.png"
               alt="Japanese Minimalism Hero"
               className="rounded-[3rem] shadow-2xl w-full object-cover aspect-[4/3] soft-shadow border border-white"
+              referrerPolicy="no-referrer"
             />
             <div className="absolute -bottom-8 -left-8 bg-white p-8 rounded-3xl shadow-xl border border-outline-variant/30 hidden md:flex items-center gap-4">
               <div className="bg-secondary-container p-4 rounded-2xl">
@@ -129,58 +114,7 @@ export default function Home() {
             <p className="text-on-surface-variant">不論是個人嗜好或商務需求，我們都有完美的空間對策。</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {solutions.map((s, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -10 }}
-                className={`${s.span} p-8 rounded-[2.5rem] border border-outline-variant/30 soft-shadow group`}
-              >
-                {s.icon}
-                <h3 className="text-2xl font-bold text-primary mb-3">{s.title}</h3>
-                <p className="text-on-surface-variant mb-6">{s.desc}</p>
-                <div className="overflow-hidden rounded-2xl">
-                  <img src={s.img} alt={s.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-              </motion.div>
-            ))}
-            
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between soft-shadow"
-            >
-              <div>
-                <ShoppingBag className="text-primary w-8 h-8 mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-2">公司帳冊</h3>
-                <p className="text-sm text-on-surface-variant">符合法規的長期存放空間。</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="md:col-span-2 bg-surface-container-high p-8 rounded-[2.5rem] flex items-center gap-6 soft-shadow"
-            >
-              <div className="flex-1">
-                <Box className="text-primary w-10 h-10 mb-4" />
-                <h3 className="text-2xl font-bold text-primary mb-2">電商倉儲</h3>
-                <p className="text-on-surface-variant">微型創業的最佳夥伴，24H 隨時存取。</p>
-              </div>
-              <div className="hidden sm:block w-1/3">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8j3NEOnWtvYZtR2Kk3JZ1NcGMbC_rYQHNjV2hInl7oLN5kccKLqiGneCi42AW_D1eQwbQnhQwPqIj4Y4LIggrmZ5mv00P6WsGjQpe2MMbPcbBEeHjM1_tpcYikw4E69yxSasQ7Bd6hdqdHoIDvVFfBiLbfDlaO4AD0M47Gv9tnoZiZFs2rpCZxgWnNeBHD2KW2JT1o5UMixadGO2lqDEpyulTX8d9xcGCXvIYuJWnpQpO5bO7GP5NT9c_Jm372ChyAu_LkArUOida" className="rounded-2xl aspect-square object-cover" alt="Storage Hallway" />
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="md:col-span-1 bg-white p-8 rounded-[2.5rem] border border-outline-variant/30 flex flex-col justify-between soft-shadow"
-            >
-              <div>
-                <House size={32} className="text-primary mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-2">辦公家具</h3>
-                <p className="text-sm text-on-surface-variant">搬遷或裝潢時的緩衝站。</p>
-              </div>
-            </motion.div>
-          </div>
+          <SolutionsCarousel />
         </div>
       </section>
 
