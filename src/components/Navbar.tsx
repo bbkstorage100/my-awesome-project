@@ -31,7 +31,6 @@ export default function Navbar() {
             alt="擺寶庫迷你倉 Logo" 
             className="h-[52px] md:h-[62px] w-auto object-contain"
             referrerPolicy="no-referrer"
-            fetchPriority="high"
           />
         </Link>
 
