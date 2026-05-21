@@ -27,9 +27,10 @@ export default function Offers() {
 
   useEffect(() => {
     async function fetchPromotions() {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500); // 2.5 秒超時機制
+
       try {
-        // 使用原生 fetch() API 直接捞取 Supabase REST API 的數據
-        // 過濾條件：is_active = true 且 available_count 必須大於 0
         const response = await fetch(
           `${SUPABASE_URL}/rest/v1/storage_promotions?is_active=eq.true&available_count=gt.0`,
           {
@@ -38,17 +39,24 @@ export default function Offers() {
               'apikey': SUPABASE_ANON_KEY,
               'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
               'Content-Type': 'application/json'
-            }
+            },
+            signal: controller.signal
           }
         );
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) throw new Error('資料庫連線失敗');
         const data = await response.json();
         
-        // 將撈到的數據存入狀態中
-        setFeaturedUnits(data);
+        if (data && data.length > 0) {
+          setFeaturedUnits(data);
+        } else {
+          setFeaturedUnits([]);
+        }
       } catch (error) {
-        console.error("無法讀取最新促銷倉型數據:", error);
+        console.warn("無法即時連線 Supabase 資料庫或無數據，已重設促銷：", error);
+        setFeaturedUnits([]);
       } finally {
         setLoading(false);
       }
@@ -177,8 +185,20 @@ export default function Offers() {
             </div>
           ) : featuredUnits.length === 0 ? (
             // 資料庫沒資料時的防錯顯示
-            <div className="text-center py-12 text-on-surface-variant/60">
-              目前暫無促銷倉型上架。
+            <div className="text-center py-16 bg-white border border-outline-variant/25 rounded-[3rem] p-8 md:p-12 max-w-xl mx-auto shadow-sm">
+              <Tag className="w-12 h-12 text-[#a3866a]/80 mx-auto mb-6" />
+              <h3 className="text-xl font-bold text-primary mb-3">本月暫無特價倉庫</h3>
+              <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">
+                詳情請聯繫客服人員，專業收納顧問將為您配對最合適的客製化尺寸或最新門市折扣優惠。
+              </p>
+              <a 
+                href="https://line.me/R/ti/p/@anb6544c" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2.5 bg-primary text-on-primary px-8 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-primary/10"
+              >
+                <MessageCircle size={18} /> 聯繫客服人員 (LINE)
+              </a>
             </div>
           ) : (
             // 當有資料時，使用 .map() 依據 Supabase 的陣列長度自動畫卡片
