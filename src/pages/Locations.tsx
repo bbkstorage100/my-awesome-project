@@ -1,7 +1,18 @@
-import { motion } from 'motion/react';
-import { MapPin, Phone, Clock, Shield, Navigation, LayoutGrid, Bus, TrainFront, ParkingCircle, CalendarCheck, User, UserRound } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { MapPin, Phone, Clock, Shield, Navigation, LayoutGrid, Bus, TrainFront, ParkingCircle, CalendarCheck, User, UserRound, Plus, Minus, Maximize2, ExternalLink, X } from 'lucide-react';
 
 export default function Locations() {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  const toggleSection = (key: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
   const locations = [
     {
       id: "xinzhuang-fuda-1",
@@ -10,6 +21,7 @@ export default function Locations() {
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-6F/20240423_153944-1.png",
+      priceImg: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/Price-S-651-6.jpg",
       features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
@@ -19,10 +31,10 @@ export default function Locations() {
           mrt: "中和新蘆線"
         },
         parking: [
-          "遠東動力園區卸貨碼頭1F/B1，免費臨時卸貨停車。",
-          "1F：上班時間開放(9:00AM ~ 06:00PM)",
-          "B1：卸貨碼頭24小時開放(卸貨臨停要請管理室放下停車位欄杆)。",
-          "或由中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
+          "遠東動力園B區卸貨碼頭1F/B1，免費臨時卸貨停車。",
+          "1F：卸貨碼頭僅上班時間開放(7:00AM ~ 06:30PM)",
+          "B1：卸貨碼頭24小時開放(30分鐘免費，卸貨臨停要請管理室放下停車位欄杆)。",
+          "B2：中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
         ]
       }
     },
@@ -33,6 +45,7 @@ export default function Locations() {
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1719560262092-1.png",
+      priceImg: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/Price-S-651-8.jpg",
       features: ["捷運站步行 5 分鐘", "專屬卸貨區", "智慧門禁系統"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
@@ -42,10 +55,10 @@ export default function Locations() {
           mrt: "中和新蘆線"
         },
         parking: [
-          "遠東動力園區卸貨碼頭1F/B1，免費臨時卸貨停車。",
-          "1F：上班時間開放(9:00AM ~ 06:00PM)",
-          "B1：卸貨碼頭24小時開放(卸貨臨停要請管理室放下停車位欄杆)。",
-          "或由中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
+          "遠東動力園B區卸貨碼頭1F/B1，免費臨時卸貨停車。",
+          "1F：卸貨碼頭僅上班時間開放(7:00AM ~ 06:30PM)",
+          "B1：卸貨碼頭24小時開放(30分鐘免費，卸貨臨停要請管理室放下停車位欄杆)。",
+          "B2：中正路的地下停車場入口進入園區，地下二樓也有付費停車位。"
         ]
       }
     },
@@ -56,7 +69,8 @@ export default function Locations() {
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230331_191055-1.png",
-      features: ["近土城交流道", "溫濕度恆控", "全室錄影監控"],
+      priceImg: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/Price-S-209-B1.jpg",
+      features: ["近土城交流道", "濕度恆控", "全室錄影監控"],
       extraInfo: {
         appointment: "參觀倉儲採預約制",
         toilet: "本場所提供廁所",
@@ -138,39 +152,118 @@ export default function Locations() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="p-4 bg-surface-container/50 rounded-3xl border border-outline-variant/10">
-                    <h4 className="flex items-center gap-2 text-primary font-bold text-sm mb-3">
-                      <Bus size={16} /> 大眾運輸
-                    </h4>
-                    <div className="space-y-2 text-[11px] leading-relaxed">
-                      <div>
-                        <div className="text-on-surface-variant/60 font-bold mb-0.5 flex items-center gap-1">
-                          <Bus size={10} /> 公車
+                <div className="space-y-3 mb-8">
+                  {/* Accordion 1: 大眾運輸 */}
+                  <div className="border border-outline-variant/20 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <button
+                      onClick={() => toggleSection(`${loc.id}-transport`)}
+                      className="w-full flex items-center justify-between px-6 py-4 bg-surface-container-low/60 hover:bg-surface-container-low/90 transition-colors duration-200 cursor-pointer select-none text-left"
+                    >
+                      <span className="flex items-center gap-3 text-primary font-bold text-sm">
+                        <Bus size={18} /> 大眾運輸資訊
+                      </span>
+                      <span className="text-primary p-1 bg-primary-container/20 rounded-full">
+                        {openSections[`${loc.id}-transport`] ? <Minus size={16} /> : <Plus size={16} />}
+                      </span>
+                    </button>
+                    {openSections[`${loc.id}-transport`] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        className="overflow-hidden border-t border-outline-variant/10"
+                      >
+                        <div className="p-5 space-y-3 text-xs leading-relaxed text-on-surface-variant">
+                          <div className="bg-surface p-3 rounded-2xl border border-outline-variant/10">
+                            <div className="text-primary font-bold mb-1 flex items-center gap-1.5">
+                              <Bus size={14} /> 聯營公車
+                            </div>
+                            <p className="text-on-surface-variant">{loc.extraInfo.transport.bus}</p>
+                          </div>
+                          <div className="bg-surface p-3 rounded-2xl border border-outline-variant/10">
+                            <div className="text-primary font-bold mb-1 flex items-center gap-1.5">
+                              <TrainFront size={14} /> 捷運路線
+                            </div>
+                            <p className="text-on-surface-variant">{loc.extraInfo.transport.mrt}</p>
+                          </div>
                         </div>
-                        <p className="text-on-surface-variant">{loc.extraInfo.transport.bus}</p>
-                      </div>
-                      <div>
-                        <div className="text-on-surface-variant/60 font-bold mb-0.5 flex items-center gap-1">
-                          <TrainFront size={10} /> 捷運
-                        </div>
-                        <p className="text-on-surface-variant">{loc.extraInfo.transport.mrt}</p>
-                      </div>
-                    </div>
+                      </motion.div>
+                    )}
                   </div>
 
-                  <div className="p-4 bg-surface-container/50 rounded-3xl border border-outline-variant/10">
-                    <h4 className="flex items-center gap-2 text-primary font-bold text-sm mb-3">
-                      <ParkingCircle size={16} /> 停車資訊
-                    </h4>
-                    <ul className="space-y-1.5 text-[11px] text-on-surface-variant list-none leading-relaxed">
-                      {loc.extraInfo.parking.map((p, i) => (
-                        <li key={i} className="flex gap-1.5">
-                          <span className="text-primary mt-1 shrink-0">•</span>
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Accordion 2: 停車資訊 */}
+                  <div className="border border-outline-variant/20 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <button
+                      onClick={() => toggleSection(`${loc.id}-parking`)}
+                      className="w-full flex items-center justify-between px-6 py-4 bg-surface-container-low/60 hover:bg-surface-container-low/90 transition-colors duration-200 cursor-pointer select-none text-left"
+                    >
+                      <span className="flex items-center gap-3 text-primary font-bold text-sm">
+                        <ParkingCircle size={18} /> 停車與卸貨資訊
+                      </span>
+                      <span className="text-primary p-1 bg-primary-container/20 rounded-full">
+                        {openSections[`${loc.id}-parking`] ? <Minus size={16} /> : <Plus size={16} />}
+                      </span>
+                    </button>
+                    {openSections[`${loc.id}-parking`] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        className="overflow-hidden border-t border-outline-variant/10"
+                      >
+                        <div className="p-5 text-xs text-on-surface-variant leading-relaxed space-y-2 bg-surface">
+                          <ul className="space-y-2 list-none text-[11px]">
+                            {loc.extraInfo.parking.map((p, i) => (
+                              <li key={i} className="flex gap-2 bg-white p-2.5 rounded-xl border border-outline-variant/10">
+                                <span className="text-primary font-extrabold shrink-0">•</span>
+                                <span className="text-on-surface-variant font-medium leading-relaxed">{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Accordion 3: 倉型&簡易價目表 */}
+                  <div className="border border-outline-variant/20 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <button
+                      onClick={() => toggleSection(`${loc.id}-pricing`)}
+                      className="w-full flex items-center justify-between px-6 py-4 bg-surface-container-low/60 hover:bg-surface-container-low/90 transition-colors duration-200 cursor-pointer select-none text-left"
+                    >
+                      <span className="flex items-center gap-3 text-primary font-bold text-sm">
+                        <LayoutGrid size={18} /> 倉型 & 簡易價目表
+                      </span>
+                      <span className="text-primary p-1 bg-primary-container/20 rounded-full">
+                        {openSections[`${loc.id}-pricing`] ? <Minus size={16} /> : <Plus size={16} />}
+                      </span>
+                    </button>
+                    {openSections[`${loc.id}-pricing`] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        className="overflow-hidden border-t border-outline-variant/10"
+                      >
+                        <div className="p-5 space-y-3.5 text-xs text-on-surface-variant leading-relaxed">
+                          <p className="text-[10px] text-on-surface-variant/85 select-none font-medium">
+                            ※ 點擊下方配置價目圖表，可放大檢視高解析度格局與尺寸：
+                          </p>
+
+                          <div 
+                            onClick={() => setLightboxImage(loc.priceImg)}
+                            className="relative group/chart border border-outline-variant/20 rounded-2xl overflow-hidden cursor-zoom-in bg-white"
+                          >
+                            <img 
+                              src={loc.priceImg} 
+                              alt={`${loc.name} 價目配置表`} 
+                              className="w-full h-auto object-contain max-h-48 group-hover/chart:scale-[1.02] transition-transform duration-500"
+                              referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/chart:opacity-100 flex items-center justify-center transition-opacity duration-300 gap-2 text-white font-bold text-xs">
+                              <Maximize2 size={14} /> 點擊放大查看圖檔
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
                 </div>
 
@@ -215,6 +308,52 @@ export default function Locations() {
            <div className="absolute inset-0 bg-white/20 backdrop-blur-3xl -z-0" />
         </section>
       </div>
+
+      {/* Interactive Lightbox Overlay */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
+            onClick={() => setLightboxImage(null)}
+          >
+            <div 
+              className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center" 
+              onClick={e => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setLightboxImage(null)}
+                className="absolute -top-14 right-0 bg-white/10 text-white hover:bg-white/20 p-2.5 rounded-full transition-all border border-white/10 cursor-pointer"
+                title="關閉"
+              >
+                <X size={20} />
+              </button>
+              <div className="bg-white p-3 rounded-[2rem] shadow-2xl overflow-hidden max-h-[75vh] flex items-center justify-center">
+                <img 
+                  src={lightboxImage} 
+                  alt="價格/配置表圖檔" 
+                  className="max-w-full max-h-[72vh] object-contain rounded-2xl"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="mt-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-white text-xs">
+                <span className="opacity-70 text-center">點擊任意空白處即可關閉</span>
+                <span className="hidden sm:inline opacity-30">|</span>
+                <a 
+                  href={lightboxImage} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary hover:underline flex items-center gap-1.5 font-bold"
+                >
+                  <ExternalLink size={14} /> 另開視窗觀看高畫質大圖
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

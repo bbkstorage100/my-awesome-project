@@ -234,7 +234,7 @@ export default function Offers() {
           <div className="bg-primary-container/10 rounded-[3rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 border border-primary/20">
             <div className="text-center md:text-left">
                <h2 className="text-3xl font-bold text-primary mb-4">訂閱優惠通知</h2>
-               <p className="text-on-surface-variant max-w-sm">第一時間獲得新據點開幕優惠與生活美學講座資訊。</p>
+               <p className="text-on-surface-variant max-w-sm">優先獲得新據點開幕優惠。</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                <input className="flex-1 bg-white px-8 py-4 rounded-2xl focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="您的電子郵件" />

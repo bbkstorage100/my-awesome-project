@@ -7,7 +7,7 @@ export default function Home() {
   const steps = [
     {
       icon: <Search className="w-8 h-8" />,
-      title: "1. 線上/電話詢價",
+      title: "1. Line線上/電話詢價",
       desc: "告知您的收納需求，專業顧問將為您建議最適合的尺寸。"
     },
     {
@@ -18,7 +18,7 @@ export default function Home() {
     {
       icon: <ClipboardCheck className="w-8 h-8" />,
       title: "3. 簽約與支付",
-      desc: "備妥身分證件，現場快速簽約並自訂門禁密碼。"
+      desc: "備妥身分證件，現場快速簽約並登錄您的悠遊卡當門禁卡。"
     },
     {
       icon: <Key className="w-8 h-8" />,
@@ -71,7 +71,7 @@ export default function Home() {
               給生活一點留白，<br />找回空間的純粹。
             </h1>
             <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
-              擺寶庫迷你倉以提供最便利的服務為出發點，提供不僅是儲存空間，更是精緻生活的延續。讓雜物退場，讓舒適空間進駐。
+              擺寶庫迷你倉以提供最便利的服務為出發點，給您的不僅是儲存空間，更是精緻生活的延續。讓雜物退場，迎接舒適空間進駐。
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-primary/95 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
@@ -91,7 +91,7 @@ export default function Home() {
             className="relative"
           >
             <img
-              src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/20260516-2%20image.png"
+              src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/web/20260516%20image.png"
               alt="Japanese Minimalism Hero"
               className="rounded-[3rem] shadow-2xl w-full object-cover aspect-[4/3] soft-shadow border border-white"
               referrerPolicy="no-referrer"

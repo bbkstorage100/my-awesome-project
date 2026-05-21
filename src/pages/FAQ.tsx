@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function FAQ() {
   const [activeCategory, setActiveCategory] = useState(0);
-  const [openIdx, setOpenIdx] = useState(-2);
+  const [openIdx, setOpenIdx] = useState(-1);
 
   const categories = [
     { 
@@ -176,7 +176,7 @@ export default function FAQ() {
                      key={i} 
                      onClick={() => {
                        setActiveCategory(i);
-                       setOpenIdx(-2);
+                       setOpenIdx(-1);
                      }}
                      className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all ${activeCategory === i ? 'bg-primary-container text-on-primary-container font-bold shadow-md' : 'text-on-surface-variant hover:bg-surface-container'}`}
                    >
@@ -190,7 +190,7 @@ export default function FAQ() {
           <main className="lg:col-span-8">
              <div className="space-y-4">
                 {currentQuestions.map((faq, idx) => {
-                  const isOpen = openIdx === idx || openIdx === -2; // -2 means all open
+                  const isOpen = openIdx === idx;
                   return (
                     <motion.div 
                       key={idx}
@@ -214,7 +214,7 @@ export default function FAQ() {
                         animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
                         className="overflow-hidden bg-surface-container-low/50"
                       >
-                        <div className="px-10 pb-10 pt-2 text-on-surface-variant leading-relaxed text-base border-t border-outline-variant/10 italic">
+                        <div className="px-10 pb-10 pt-2 text-on-surface-variant leading-relaxed text-base border-t border-outline-variant/10 italic whitespace-pre-line">
                           {faq.a}
                         </div>
                       </motion.div>
