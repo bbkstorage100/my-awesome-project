@@ -55,7 +55,7 @@ export default function Footer() {
       
       <div className="max-w-7xl mx-auto px-6 py-8 border-t border-outline-variant/10 text-center">
         <p className="text-on-surface-variant text-xs opacity-70">
-          Copyright © {new Date().getFullYear()} 擺寶庫實業有限公司 . All rights reserved.
+          Copyright © {new Date().getFullYear()} 擺寶庫實業有限公司 . All rights reserved. 本網站部分內容/圖片由 AI 生成.
         </p>
       </div>
     </footer>
