@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Shield, Calendar, Droplets, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Shield, Calendar, Droplets, ShoppingBag, Box, House, MessageCircle, ClipboardCheck, Key, Search, User, MapPin, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SolutionsCarousel from '../components/SolutionsCarousel';
 
@@ -145,13 +145,49 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full">
-            <div className="bg-primary p-12 rounded-[2.5rem] shadow-xl text-on-primary text-center relative overflow-hidden">
-              <p className="text-7xl font-black mb-3">99%</p>
-              <p className="text-sm uppercase tracking-widest opacity-80 font-semibold">客戶滿意度</p>
-              <div className="mt-8 pt-8 border-t border-on-primary/10 text-sm opacity-90 leading-relaxed">
+            <div className="bg-gradient-to-br from-[#FFFCEE] via-[#EAB33B] to-[#926210] p-10 rounded-[3rem] shadow-[0_25px_60px_-15px_rgba(146,98,16,0.45)] text-center relative overflow-hidden border-[4px] border-[#FFF1C5] flex flex-col items-center justify-center min-h-[380px] group hover:-translate-y-1 transition-all duration-500">
+              {/* Glossy metallic light sweep effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none -translate-x-full group-hover:translate-x-full transition-transform duration-[1.2s] ease-out-quint" />
+              
+              {/* Concentric luxury line details */}
+              <div className="absolute inset-2 border border-[#FFE79E]/45 rounded-[2.6rem] pointer-events-none" />
+              <div className="absolute inset-2.5 border border-[#926210]/15 rounded-[2.5rem] pointer-events-none" />
+              
+              {/* 3D Golden Award Seal & Ribbon Graphic */}
+              <div className="relative mb-4 flex flex-col items-center">
+                <div className="absolute -inset-4 bg-gradient-to-r from-yellow-300 via-[#EAB33B] to-yellow-600 rounded-full blur-xl opacity-35 animate-pulse" />
+                
+                {/* Outer ring of medal */}
+                <div className="relative bg-gradient-to-b from-[#FFF2CB] via-[#E6AD2E] to-[#B27D16] p-4.5 rounded-full shadow-[0_12px_28px_rgba(110,75,10,0.5),_inset_0_2px_4px_rgba(255,255,255,1)] border-2 border-[#FFE8A3] flex items-center justify-center z-10">
+                  <Award className="w-14 h-14 text-[#5c3e06] drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]" />
+                </div>
+                
+                {/* 3D Ribbon Tails */}
+                <div className="absolute top-[80%] flex gap-3.5 z-0 justify-center">
+                  <div className="w-4 h-12 bg-gradient-to-b from-[#E0A221] to-[#805305] rounded-b-md transform -rotate-12 origin-top shadow-md border-r border-white/10" />
+                  <div className="w-4 h-12 bg-gradient-to-b from-[#E0A221] to-[#805305] rounded-b-md transform rotate-12 origin-top shadow-md border-l border-white/10" />
+                </div>
+              </div>
+
+              {/* Five Golden Stars */}
+              <div className="flex gap-1.5 mb-2 mt-3 relative z-10">
+                {[1, 2, 3, 4, 5].map((_, starIdx) => (
+                  <span key={starIdx} className="text-xl drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)] text-[#FFEAA7] animate-bounce" style={{ animationDelay: `${starIdx * 0.15}s` }}>★</span>
+                ))}
+              </div>
+
+              {/* Giant 99% satisfaction display */}
+              <h3 className="text-6xl font-black text-white tracking-tighter drop-shadow-[0_4px_8px_rgba(80,50,5,0.5)] mb-1 relative z-10 select-none">
+                99%
+              </h3>
+              
+              <p className="text-sm uppercase tracking-widest font-black text-[#4E3100] mb-4 relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]">
+                客戶滿意度
+              </p>
+              
+              <div className="mt-2 pt-5 border-t border-[#4E3100]/15 text-sm font-semibold text-[#3E2500] leading-relaxed max-w-[260px] relative z-10">
                 擺寶庫始終承諾為您提供最高標準的恆溫濕控與全天候隨時存取的頂級服務，最值得您信賴。
               </div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
             </div>
           </div>
         </div>
