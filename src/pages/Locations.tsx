@@ -18,6 +18,7 @@ export default function Locations() {
       id: "xinzhuang-fuda-1",
       name: "新莊輔大1倉",
       address: "新北市新莊區中正路651-1號6樓(遠東動力園區)",
+      serviceAreas: "新莊、板橋、樹林、三峽 及新莊捷運沿線居民學子",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-6F/20240423_153944-1.png",
@@ -42,6 +43,7 @@ export default function Locations() {
       id: "xinzhuang-fuda-2",
       name: "新莊輔大2倉",
       address: "新北市新莊區中正路651-1號8樓(遠東動力園區)",
+      serviceAreas: "新莊、板橋、樹林、三峽 捷運動力沿線通勤族",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1719560262092-1.png",
@@ -66,6 +68,7 @@ export default function Locations() {
       id: "tucheng-central",
       name: "土城中央倉",
       address: "新北市土城區中央路二段209號B1",
+      serviceAreas: "土城、板橋、三峽、樹林 及周邊商圈家庭與電商",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230331_191055-1.png",
@@ -98,7 +101,7 @@ export default function Locations() {
             尋找最靠近您的<br />極簡據點
           </motion.h1>
           <p className="text-on-surface-variant text-lg max-w-xl leading-relaxed">
-            我們選址於城市便利的地段，結合高品質的安全技術，讓您的物品在離家不遠處也能享有尊榮款待。
+            擺寶庫優質倉儲全面覆蓋<strong>新莊、板橋、樹林、土城、三峽</strong>等新北主要生活圈。我們選址於便捷、交通發達的園區地段，結合高品質的 24H 恆溫除濕、智慧門禁技術，讓您的物品在離街坊不遠處也能隨時享有細緻與尊貴的儲存款待。
           </p>
         </header>
 
@@ -125,7 +128,16 @@ export default function Locations() {
               </div>
               
               <div className="p-10">
-                <h2 className="text-3xl font-bold text-primary mb-6">{loc.name}</h2>
+                <h2 className="text-3xl font-bold text-primary mb-2">{loc.name}</h2>
+                
+                {/* SEO Region Service Highlight Badge */}
+                <div className="mb-6 flex items-start gap-2.5 bg-primary/[0.04] p-3.5 rounded-2xl border border-primary/10">
+                  <span className="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-md shrink-0 mt-0.5 uppercase tracking-wide">地區服務</span>
+                  <p className="text-xs font-semibold text-primary/95 leading-relaxed">
+                    精準服務：{loc.serviceAreas}
+                  </p>
+                </div>
+
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-4 text-on-surface-variant">
                     <MapPin className="text-primary shrink-0" size={20} />
