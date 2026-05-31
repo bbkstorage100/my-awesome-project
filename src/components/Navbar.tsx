@@ -24,12 +24,12 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-surface/80 backdrop-blur-md shadow-sm border-b border-outline-variant/20' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center h-28 md:h-32">
         <Link to="/" className="flex items-center">
           <img 
             src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260515%20Logo-360x120%20T.png" 
             alt="擺寶庫迷你倉 Logo" 
-            className="h-[52px] md:h-[62px] w-auto object-contain"
+            className="h-[78px] md:h-[93px] w-auto object-contain animate-fadeIn"
             referrerPolicy="no-referrer"
             fetchPriority="high"
           />

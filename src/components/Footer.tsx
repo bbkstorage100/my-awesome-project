@@ -10,7 +10,7 @@ export default function Footer() {
             <img 
               src="https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/20260515%20Logo-360x120%20T.png" 
               alt="擺寶庫迷你倉 Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-[60px] md:h-[72px] w-auto object-contain"
               referrerPolicy="no-referrer"
             />
           </Link>
