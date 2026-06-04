@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- GitHub Pages Single Page App Redirect Resolver -->
+    <script type="text/javascript">
+      (function() {
+        var queryParams = new URLSearchParams(window.location.search);
+        var redirectPath = queryParams.get('redirect');
+        if (redirectPath) {
+          // Decode the redirect URL cleanly and update browser history state
+          window.history.replaceState(null, null, redirectPath);
+        }
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8C0ND6T2P"></script>
     <script>
