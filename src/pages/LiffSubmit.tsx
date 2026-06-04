@@ -52,6 +52,17 @@ export default function LiffSubmit() {
       });
   }, [searchParams]);
 
+  // Auto-trigger redirection to LINE once loaded
+  useEffect(() => {
+    if (isLoading || !payloadData || isSentSuccessfully || isSending) return;
+
+    const timer = setTimeout(() => {
+      handleLiffFormSubmit();
+    }, 1000); // 1-second elegant delay so users can read the status
+
+    return () => clearTimeout(timer);
+  }, [isLoading, payloadData]);
+
   const handleCopyText = async () => {
     if (!payloadData) return;
     const msgText = formatBookingMessage(payloadData);
@@ -96,7 +107,18 @@ export default function LiffSubmit() {
         console.warn("Direct liff.sendMessages is not permitted or failed, falling back to LINE Scheme:", err);
         // Fallback to direct Line Scheme inside LINE
         const lineSchemeUrl = getLineOADirectLink(messageText);
-        window.location.href = lineSchemeUrl;
+        
+        try {
+          // Inside LINE client, it is crucial to use liff.openWindow with external: true
+          // to trigger opening the Official Account natively
+          liff.openWindow({
+            url: lineSchemeUrl,
+            external: true
+          });
+        } catch (openErr) {
+          console.warn("liff.openWindow failed, fallback to location.href:", openErr);
+          window.location.href = lineSchemeUrl;
+        }
         setIsSentSuccessfully(true);
       }
     } else {
@@ -111,8 +133,13 @@ export default function LiffSubmit() {
       
       const directLineLink = getLineOADirectLink(messageText);
       
-      // Attempt to open LINE OA prefilled chat room
-      window.open(directLineLink, '_blank');
+      // Attempt to open LINE OA prefilled chat room.
+      // Use window.location.href instead of window.open to prevent popup blockers on modern mobile browsers.
+      try {
+        window.location.href = directLineLink;
+      } catch (err) {
+        window.open(directLineLink, '_blank');
+      }
       setIsSentSuccessfully(true);
     }
     
