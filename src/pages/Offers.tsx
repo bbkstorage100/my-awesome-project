@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Tag, Sparkles, Truck, Check, MessageCircle, LayoutGrid, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import japaneseStyleMoving from '../assets/images/japanese_style_moving_1784466660368.jpg';
 
 // ⚠️ 這裡定義從 Supabase 捞出來的資料型態 (TypeScript Interface)
@@ -86,6 +86,33 @@ export default function Offers() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Swipe support for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
   // ⚠️ 請在此處填入您的 Supabase 設定（這在 GitHub Pages 前端是公開的，請務必開啟 RLS 安全防護）
   const SUPABASE_URL = "https://ttmythpjaukwxdaapwlu.supabase.co"; 
@@ -181,11 +208,31 @@ export default function Offers() {
         </header>
 
         {/* Shocking Offer Card / Carousel */}
-        <section className="mb-16">
+        <section className="mb-16 relative">
+          {/* Navigation Arrow Buttons for Larger Screens (Desktop Only) */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:flex absolute -left-6 lg:-left-10 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+            aria-label="Previous Offer"
+          >
+            <ChevronLeft size={28} />
+          </button>
+          
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute -right-6 lg:-right-10 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+            aria-label="Next Offer"
+          >
+            <ChevronRight size={28} />
+          </button>
+
           <div 
             className="relative w-full overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div 
@@ -209,7 +256,7 @@ export default function Offers() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20 min-h-[500px]"
+                className="bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20 min-h-[500px] select-none"
               >
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
@@ -241,7 +288,7 @@ export default function Offers() {
                       <img 
                         src={promotions[currentIndex].imageUrl} 
                         alt={promotions[currentIndex].title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 select-none pointer-events-none" 
                         referrerPolicy="no-referrer"
                       />
                    </div>
