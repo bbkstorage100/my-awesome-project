@@ -71,7 +71,7 @@ export default function Home() {
               給生活一點留白，<br />找回空間的純粹。
             </h1>
             <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
-              擺寶庫迷你倉提供新北<strong>新莊、板橋、土城、樹林、三峽、北大</strong>等地區最優質、便利的 24H 恆溫除濕個人倉庫與自存倉服務。讓雜物退場，迎接舒適居住空間，給您的不僅是儲存空間，更是個人與商務精緻生活的完美延續。
+              擺寶庫迷你倉提供新北<strong>新莊輔大、新莊頭前庄、板橋、土城、樹林、三峽、北大</strong>等地區最優質、便利的 24H 恆溫除濕個人倉庫與自存倉服務。讓雜物退場，迎接舒適居住空間，給您的不僅是儲存空間，更是個人與商務精緻生活的完美延續。
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-primary/95 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">

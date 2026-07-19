@@ -1,6 +1,7 @@
-import { motion } from 'motion/react';
-import { Tag, Sparkles, Truck, Check, MessageCircle, LayoutGrid, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Tag, Sparkles, Truck, Check, MessageCircle, LayoutGrid, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import japaneseStyleMoving from '../assets/images/japanese_style_moving_1784466660368.jpg';
 
 // ⚠️ 這裡定義從 Supabase 捞出來的資料型態 (TypeScript Interface)
 interface StoragePromotion {
@@ -15,11 +16,76 @@ interface StoragePromotion {
   is_active: boolean;
 }
 
+const promotions = [
+  {
+    id: "tianqian-early",
+    type: "new-location",
+    icon: <Sparkles size={14} />,
+    tagText: "全新據點・搶先預約",
+    title: "新莊頭前庄倉 早鳥優惠",
+    subtitle: "「搶先部署極簡生活，預留優雅的日常餘裕。」",
+    description: (
+      <>
+        即將落成的新莊頭前庄倉推出限定早鳥方案！不限任何倉型，凡預留登記並預繳一年租金，即享<strong>「加碼多贈送一個月」</strong>的專屬超值禮遇。限額 20 名優先登記中，名額極其有限，額滿即止，立即把握機會搶先卡位！
+      </>
+    ),
+    buttonText: "立即搶先登記",
+    buttonLink: "https://line.me/R/ti/p/@anb6544c",
+    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBv2Y1DDDJAVCbr2lSfyx0wuu_ia8qZKocSD4TC6ia5h-hB4c1LwWZ8ZlZ5AdR1LZc6MPS_lJYYVF-zJUQyAKOROXAoqV6R3ZQv1DJXQRzTKhwz68Dpf5Rakf51sl0-z9VQk2oh3upTtQXhL0Rzeu1fXri0Z39SHilCGiJ6Nyalu_dPRysN-73S_FgUBU2L8XLEFrTYHhngHCG4SlKuWSOlUqOXEGMSP05nquyt_s3yUXgHklTzZvTWW95w6bcePiplb5AQrc-R68EW",
+    badge: "NEW!",
+    bgClass: "bg-white",
+    borderClass: "border-primary/20",
+  },
+  {
+    id: "fuda-discount",
+    type: "promo",
+    icon: <Sparkles size={14} />,
+    tagText: "特惠活動・限時優惠",
+    title: "新莊輔大2倉 震撼優惠",
+    subtitle: "「開啟極簡生活，從第一步的體貼開始。」",
+    description: (
+      <>
+        適用於<strong>新莊輔大2倉</strong>全系列倉儲單位。簽約六個月以上即可享有<strong>首月 8 折</strong>的專屬禮遇，協助您輕鬆開啟極簡生活，享受優雅、舒心的極簡居住空間。
+      </>
+    ),
+    buttonText: "立即申請名額",
+    buttonLink: "https://line.me/R/ti/p/@anb6544c",
+    imageUrl: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1719560262092-1.png",
+    badge: "8折",
+    bgClass: "bg-white",
+    borderClass: "border-primary/20",
+  },
+  {
+    id: "moving-help",
+    type: "service",
+    icon: <Truck size={14} />,
+    tagText: "搬家特惠・貼心服務",
+    title: "推薦專業搬家公司",
+    subtitle: "「給心愛物品最溫柔的對待。」",
+    description: (
+      <>
+        預約搬家服務，我們提供專業優質的搬家團隊聯絡方式。安全、迅速、省心，一站式解決您的搬遷與入倉需求。限時提供專業搬家諮詢與專屬入倉保障，給心愛物品最溫柔的對待。
+      </>
+    ),
+    buttonText: "LINE 立即諮詢",
+    buttonLink: "https://line.me/R/ti/p/@anb6544c",
+    imageUrl: japaneseStyleMoving,
+    badge: "搬家",
+    bgClass: "bg-white",
+    borderClass: "border-secondary/20",
+  }
+];
+
 export default function Offers() {
   // 1. 建立儲存促銷資料的狀態 (State)
   const [featuredUnits, setFeaturedUnits] = useState<StoragePromotion[]>([]);
   // 2. 建立載入中的狀態
   const [loading, setLoading] = useState(true);
+
+  // 3. Carousel 狀態
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   // ⚠️ 請在此處填入您的 Supabase 設定（這在 GitHub Pages 前端是公開的，請務必開啟 RLS 安全防護）
   const SUPABASE_URL = "https://ttmythpjaukwxdaapwlu.supabase.co"; 
@@ -65,6 +131,26 @@ export default function Offers() {
     fetchPromotions();
   }, []);
 
+  // 4. Carousel 自動輪播機制 (當滑鼠懸停時暫停)
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % promotions.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [currentIndex, isHovered]);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % promotions.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + promotions.length) % promotions.length);
+  };
+
   return (
     <div className="pt-32 pb-24 min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -94,82 +180,114 @@ export default function Offers() {
           </motion.p>
         </header>
 
-        {/* Shocking Offer Card */}
+        {/* Shocking Offer Card / Carousel */}
         <section className="mb-16">
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20"
+          <div 
+            className="relative w-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="flex-1">
-              <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
-                <Sparkles size={14} />
-                2026季節限定方案
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">首月 8折 震撼優惠</h2>
-              <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">「開啟極簡生活，從第一步的體貼開始。」</p>
-              <p className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
-                適用於 新莊2倉 全系列倉儲單位。簽約六個月以上即可享有首月 8 折 的專屬禮遇，協助您輕鬆開啟極簡生活。
-              </p>
-              
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div 
+                key={currentIndex}
+                custom={direction}
+                variants={{
+                  enter: (dir) => ({
+                    x: dir > 0 ? 50 : -50,
+                    opacity: 0
+                  }),
+                  center: {
+                    x: 0,
+                    opacity: 1
+                  },
+                  exit: (dir) => ({
+                    x: dir < 0 ? 50 : -50,
+                    opacity: 0
+                  })
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20 min-h-[500px]"
+              >
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
+                    {promotions[currentIndex].icon}
+                    {promotions[currentIndex].tagText}
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">
+                    {promotions[currentIndex].title}
+                  </h2>
+                  <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">
+                    {promotions[currentIndex].subtitle}
+                  </p>
+                  <div className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
+                    {promotions[currentIndex].description}
+                  </div>
+                  
+                  <a 
+                    href={promotions[currentIndex].buttonLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg cursor-pointer"
+                  >
+                    {promotions[currentIndex].buttonText}
+                  </a>
+                </div>
+                
+                <div className="flex-1 w-full relative">
+                   <div className="aspect-square rounded-[2rem] overflow-hidden bg-surface-container">
+                      <img 
+                        src={promotions[currentIndex].imageUrl} 
+                        alt={promotions[currentIndex].title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                        referrerPolicy="no-referrer"
+                      />
+                   </div>
+                   <div className="absolute -top-4 -right-4 bg-white px-6 py-6 rounded-full shadow-2xl border border-primary/10 flex items-center justify-center animate-pulse">
+                      <span className="text-primary font-bold text-2xl">{promotions[currentIndex].badge}</span>
+                   </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
+            {/* Carousel Navigation Console */}
+            <div className="flex items-center justify-center gap-6 mt-8">
+              <button 
+                onClick={handlePrev} 
+                className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                aria-label="Previous Offer"
+              >
+                <ChevronLeft size={20} />
+              </button>
               
-              <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg">
-                立即申請名額
-              </a>
+              <div className="flex items-center gap-2">
+                {promotions.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setDirection(index > currentIndex ? 1 : -1);
+                      setCurrentIndex(index);
+                    }}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      currentIndex === index ? 'bg-primary w-8' : 'bg-outline-variant/60 hover:bg-outline-variant w-2.5'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+              
+              <button 
+                onClick={handleNext} 
+                className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                aria-label="Next Offer"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
-            
-            <div className="flex-1 w-full relative">
-               <div className="aspect-square rounded-[2rem] overflow-hidden bg-surface-container">
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv2Y1DDDJAVCbr2lSfyx0wuu_ia8qZKocSD4TC6ia5h-hB4c1LwWZ8ZlZ5AdR1LZc6MPS_lJYYVF-zJUQyAKOROXAoqV6R3ZQv1DJXQRzTKhwz68Dpf5Rakf51sl0-z9VQk2oh3upTtQXhL0Rzeu1fXri0Z39SHilCGiJ6Nyalu_dPRysN-73S_FgUBU2L8XLEFrTYHhngHCG4SlKuWSOlUqOXEGMSP05nquyt_s3yUXgHklTzZvTWW95w6bcePiplb5AQrc-R68EW" alt="Minimalist Storage" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-               </div>
-               <div className="absolute -top-4 -right-4 bg-white px-6 py-6 rounded-full shadow-2xl border border-primary/10 flex items-center justify-center animate-pulse">
-                  <span className="text-primary font-bold text-2xl">NEW!</span>
-               </div>
-            </div>
-          </motion.div>
+          </div>
         </section>
-
-         {/* Secondary Promotions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-           <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white rounded-[2.5rem] p-12 border border-outline-variant/30 flex flex-col group hover:shadow-xl transition-all"
-           >
-              <div className="bg-primary-container/20 text-on-primary-container px-4 py-1 rounded-full text-xs font-bold mb-8 self-start flex items-center gap-2">
-                <Truck size={14} /> 搬家特惠
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-6">推薦專業搬家公司</h3>
-              <p className="text-on-surface-variant mb-auto text-base leading-relaxed">
-                預約搬家服務，我們提供專業搬家團隊聯絡方式。給心愛物品最溫柔的對待。
-              </p>
-              <div className="mt-12 space-y-4">
-                 <div className="flex items-center gap-2 text-secondary font-bold text-sm">
-                   <Check size={16} /> 限定北部地區
-                 </div>
-                 <button className="w-full border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary/5 transition-all">
-                    查看完整細則
-                 </button>
-              </div>
-           </motion.div>
-
-           <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-surface-container rounded-[2.5rem] p-12 border border-outline-variant/30 flex flex-col group hover:shadow-xl transition-all"
-           >
-              <div className="bg-secondary-container/50 text-secondary px-4 py-1 rounded-full text-xs font-bold mb-8 self-start flex items-center gap-2">
-                <Tag size={14} /> 早鳥預約
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-6">新館開幕超前部署</h3>
-              <p className="text-on-surface-variant mb-auto text-base leading-relaxed">
-                預約即將落成的新館，享三年不漲價保障與首期八折優惠。限額 20 名優先登記中。
-              </p>
-              <div className="mt-12">
-                 <a href="https://line.me/R/ti/p/@anb6544c" target="_blank" rel="noopener noreferrer" className="w-full bg-secondary text-white py-4 rounded-xl font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
-                     <MessageCircle size={18} /> LINE 群組預留
-                 </a>
-              </div>
-           </motion.div>
-        </div>
 
         {/* Featured Units / Product Options (動態資料渲染區) */}
         <section className="py-16">

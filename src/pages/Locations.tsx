@@ -18,7 +18,7 @@ export default function Locations() {
       id: "xinzhuang-fuda-1",
       name: "新莊輔大1倉",
       address: "新北市新莊區中正路651-1號6樓(遠東動力園區)",
-      serviceAreas: "新莊、板橋、樹林、三峽、北大 及新莊捷運沿線居民學子",
+      serviceAreas: "新莊輔大、新莊頭前庄、板橋、樹林、三峽、北大 及新莊捷運沿線居民學子",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-6F/20240423_153944-1.png",
@@ -43,7 +43,7 @@ export default function Locations() {
       id: "xinzhuang-fuda-2",
       name: "新莊輔大2倉",
       address: "新北市新莊區中正路651-1號8樓(遠東動力園區)",
-      serviceAreas: "新莊、板橋、樹林、三峽、北大 捷運動力沿線通勤族",
+      serviceAreas: "新莊輔大、新莊頭前庄、板橋、樹林、三峽、北大 捷運動力沿線通勤族",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-651-8F/1719560262092-1.png",
@@ -68,7 +68,7 @@ export default function Locations() {
       id: "tucheng-central",
       name: "土城中央倉",
       address: "新北市土城區中央路二段209號B1",
-      serviceAreas: "土城、板橋、三峽、樹林、北大 及周邊商圈家庭與電商",
+      serviceAreas: "土城、板橋、三峽、樹林、北大、新莊輔大、新莊頭前庄 及周邊商圈家庭與電商",
       phone: "(02)2906-6337",
       hours: "24H憑門禁卡自由進出",
       img: "https://ttmythpjaukwxdaapwlu.supabase.co/storage/v1/object/public/image/S-209-B1/20230331_191055-1.png",
@@ -101,7 +101,7 @@ export default function Locations() {
             尋找最靠近您的<br />極簡據點
           </motion.h1>
           <p className="text-on-surface-variant text-lg max-w-xl leading-relaxed">
-            擺寶庫優質倉儲全面覆蓋<strong>新莊、板橋、土城、樹林、三峽、北大</strong>等新北主要生活圈。我們選址於便捷、交通發達的園區地段，結合高品質的 24H 恆溫除濕、智慧門禁技術，讓您的物品在離街坊不遠處也能隨時享有細緻與尊貴的儲存款待。
+            擺寶庫優質倉儲全面覆蓋<strong>新莊輔大、新莊頭前庄、板橋、土城、樹林、三峽、北大</strong>等新北主要生活圈。我們選址於便捷、交通發達的園區地段，結合高品質的 24H 恆溫除濕、智慧門禁技術，讓您的物品在離街坊不遠處也能隨時享有細緻與尊貴的儲存款待。
           </p>
         </header>
 
