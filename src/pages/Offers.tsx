@@ -84,34 +84,66 @@ export default function Offers() {
 
   // 3. Carousel 狀態
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
-  // Swipe support for mobile
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  // Element-center detection on scroll to update dynamic bullets / highlights
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  const minSwipeDistance = 50;
+    const cards = container.querySelectorAll('[data-slide-item]');
+    let closestIndex = 0;
+    let minDistance = Infinity;
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    cards.forEach((card, idx) => {
+      const cardRect = card.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      const distance = Math.abs(cardCenter - containerCenter);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = idx;
+      }
+    });
+
+    setCurrentIndex(closestIndex);
   };
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+  // Safe scroll transition wrapper
+  const scrollToCard = (index: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('[data-slide-item]');
+    const targetCard = cards[index] as HTMLElement;
+    if (!targetCard) return;
+
+    const containerWidth = container.clientWidth;
+    const offsetLeft = targetCard.offsetLeft;
+    
+    // We scroll targetCard to be perfectly centered inside the container view
+    const targetScrollLeft = offsetLeft - (containerWidth - targetCard.clientWidth) / 2;
+
+    container.scrollTo({
+      left: targetScrollLeft,
+      behavior: 'smooth'
+    });
+    
+    setCurrentIndex(index);
   };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe) {
-      handleNext();
-    } else if (isRightSwipe) {
-      handlePrev();
-    }
+  const handleNext = () => {
+    const nextIndex = (currentIndex + 1) % promotions.length;
+    scrollToCard(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = (currentIndex - 1 + promotions.length) % promotions.length;
+    scrollToCard(prevIndex);
   };
 
   // ⚠️ 請在此處填入您的 Supabase 設定（這在 GitHub Pages 前端是公開的，請務必開啟 RLS 安全防護）
@@ -162,21 +194,11 @@ export default function Offers() {
   useEffect(() => {
     if (isHovered) return;
     const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % promotions.length);
+      const nextIndex = (currentIndex + 1) % promotions.length;
+      scrollToCard(nextIndex);
     }, 6000);
     return () => clearInterval(timer);
   }, [currentIndex, isHovered]);
-
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % promotions.length);
-  };
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + promotions.length) % promotions.length);
-  };
 
   return (
     <div className="pt-32 pb-24 min-h-screen bg-background">
@@ -209,10 +231,20 @@ export default function Offers() {
 
         {/* Shocking Offer Card / Carousel */}
         <section className="mb-16 relative">
+          <style dangerouslySetInnerHTML={{ __html: `
+            .scrollbar-none::-webkit-scrollbar {
+              display: none;
+            }
+            .scrollbar-none {
+              -ms-overflow-style: none; /* IE, Edge */
+              scrollbar-width: none; /* Firefox */
+            }
+          `}} />
+
           {/* Navigation Arrow Buttons for Larger Screens (Desktop Only) */}
           <button
             onClick={handlePrev}
-            className="hidden md:flex absolute -left-6 lg:-left-10 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+            className="hidden md:flex absolute -left-6 lg:-left-12 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
             aria-label="Previous Offer"
           >
             <ChevronLeft size={28} />
@@ -220,119 +252,106 @@ export default function Offers() {
           
           <button
             onClick={handleNext}
-            className="hidden md:flex absolute -right-6 lg:-right-10 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+            className="hidden md:flex absolute -right-6 lg:-right-12 top-[45%] -translate-y-1/2 z-20 bg-white hover:bg-primary text-primary hover:text-on-primary w-14 h-14 rounded-full items-center justify-center shadow-lg border border-outline-variant/35 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
             aria-label="Next Offer"
           >
             <ChevronRight size={28} />
           </button>
 
           <div 
-            className="relative w-full overflow-hidden"
+            ref={containerRef}
+            onScroll={handleScroll}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none w-full gap-6 scroll-smooth pb-4"
           >
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div 
-                key={currentIndex}
-                custom={direction}
-                variants={{
-                  enter: (dir) => ({
-                    x: dir > 0 ? 50 : -50,
-                    opacity: 0
-                  }),
-                  center: {
-                    x: 0,
-                    opacity: 1
-                  },
-                  exit: (dir) => ({
-                    x: dir < 0 ? 50 : -50,
-                    opacity: 0
-                  })
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20 min-h-[500px] select-none"
-              >
-                <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
-                    {promotions[currentIndex].icon}
-                    {promotions[currentIndex].tagText}
-                  </div>
-                  <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">
-                    {promotions[currentIndex].title}
-                  </h2>
-                  <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">
-                    {promotions[currentIndex].subtitle}
-                  </p>
-                  <div className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
-                    {promotions[currentIndex].description}
-                  </div>
-                  
-                  <a 
-                    href={promotions[currentIndex].buttonLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg cursor-pointer"
-                  >
-                    {promotions[currentIndex].buttonText}
-                  </a>
-                </div>
-                
-                <div className="flex-1 w-full relative">
-                   <div className="aspect-square rounded-[2rem] overflow-hidden bg-surface-container">
-                      <img 
-                        src={promotions[currentIndex].imageUrl} 
-                        alt={promotions[currentIndex].title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 select-none pointer-events-none" 
-                        referrerPolicy="no-referrer"
-                      />
-                   </div>
-                   <div className="absolute -top-4 -right-4 bg-white px-6 py-6 rounded-full shadow-2xl border border-primary/10 flex items-center justify-center animate-pulse">
-                      <span className="text-primary font-bold text-2xl">{promotions[currentIndex].badge}</span>
-                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Carousel Navigation Console */}
-            <div className="flex items-center justify-center gap-6 mt-8">
-              <button 
-                onClick={handlePrev} 
-                className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
-                aria-label="Previous Offer"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              
-              <div className="flex items-center gap-2">
-                {promotions.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setDirection(index > currentIndex ? 1 : -1);
-                      setCurrentIndex(index);
-                    }}
-                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      currentIndex === index ? 'bg-primary w-8' : 'bg-outline-variant/60 hover:bg-outline-variant w-2.5'
+            {promotions.map((promo, index) => {
+              const isFocused = currentIndex === index;
+              return (
+                <div
+                  key={promo.id}
+                  data-slide-item
+                  className="shrink-0 snap-center w-full transition-all duration-500"
+                >
+                  <div 
+                    className={`bg-white rounded-[3rem] border border-outline-variant/30 p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center group shadow-sm hover:shadow-xl transition-all border-b-8 border-primary/20 min-h-[500px] select-none ${
+                      isFocused ? 'opacity-100' : 'opacity-60 scale-[0.98]'
                     }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-              
-              <button 
-                onClick={handleNext} 
-                className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
-                aria-label="Next Offer"
-              >
-                <ChevronRight size={20} />
-              </button>
+                  >
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold mb-8">
+                        {promo.icon}
+                        {promo.tagText}
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">
+                        {promo.title}
+                      </h2>
+                      <p className="text-on-surface-variant text-lg mb-8 leading-relaxed italic">
+                        {promo.subtitle}
+                      </p>
+                      <div className="text-on-surface-variant mb-10 text-sm leading-relaxed max-w-md">
+                        {promo.description}
+                      </div>
+                      
+                      <a 
+                        href={promo.buttonLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-block bg-primary text-on-primary px-12 py-4 rounded-2xl font-bold hover:brightness-105 active:scale-95 transition-all shadow-lg text-lg cursor-pointer"
+                      >
+                        {promo.buttonText}
+                      </a>
+                    </div>
+                    
+                    <div className="flex-1 w-full relative">
+                       <div className="aspect-square rounded-[2rem] overflow-hidden bg-surface-container">
+                          <img 
+                            src={promo.imageUrl} 
+                            alt={promo.title} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 select-none pointer-events-none" 
+                            referrerPolicy="no-referrer"
+                          />
+                       </div>
+                       <div className="absolute -top-4 -right-4 bg-white px-6 py-6 rounded-full shadow-2xl border border-primary/10 flex items-center justify-center animate-pulse">
+                          <span className="text-primary font-bold text-2xl">{promo.badge}</span>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Carousel Navigation Console */}
+          <div className="flex items-center justify-center gap-6 mt-8">
+            <button 
+              onClick={handlePrev} 
+              className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+              aria-label="Previous Offer"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            
+            <div className="flex items-center gap-2">
+              {promotions.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToCard(index)}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentIndex === index ? 'bg-primary w-8' : 'bg-outline-variant/60 hover:bg-outline-variant w-2.5'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
+            
+            <button 
+              onClick={handleNext} 
+              className="p-3 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-container transition-all text-primary hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+              aria-label="Next Offer"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </section>
 
